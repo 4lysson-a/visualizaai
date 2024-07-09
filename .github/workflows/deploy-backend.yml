@@ -27,9 +27,6 @@ jobs:
       - name: Auth with your back4app account
         run: echo ${{ secrets.BACK4APP_ACCOUNT_KEY }} | b4a configure accountkey
 
-      - name: Install jq
-        run: sudo apt-get update && sudo apt-get install -y jq
-
       - name: Update applicationId in .parse.local
         run: |
           cd backend
