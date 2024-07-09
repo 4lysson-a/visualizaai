@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  front:
+    image: node:20.11
+    volumes:
+      - ./frontend:/app
+    working_dir: /app
+    command: npm run dev
+    ports:
+      - 5173:5173
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      - MONGO_INITDB_DATABASE=example
+    ports:
+      - '27017-27019:27017-27019'
+    volumes:
+      - ./data/mongodb_data:/data/db
+
+volumes:
+  mongodb_data_container:
+    driver: local
