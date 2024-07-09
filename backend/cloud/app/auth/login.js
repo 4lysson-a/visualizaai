@@ -1,15 +1,15 @@
 Parse.Cloud.define('login', async (request) => {
-	const { username, password } = request.params;
+  const { username, password } = request.params;
 
-	if (!username || !password) {
-		throw new Error('Email ou senha não foram fornecidos');
-	}
+  if (!username || !password) {
+    throw new Error('Email ou senha não foram fornecidos');
+  }
 
-	try {
-		const user = await Parse.User.logIn(username, password);
+  try {
+    const user = await Parse.User.logIn(username, password);
 
-		return user;
-	} catch (error) {
-		return error;
-	}
+    return user;
+  } catch (error) {
+    return error;
+  }
 });

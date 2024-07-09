@@ -6,3 +6,4 @@ node_modules
 logs
 .parse.local
 .parse.project
+config.json

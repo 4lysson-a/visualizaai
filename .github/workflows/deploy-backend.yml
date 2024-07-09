@@ -1,15 +1,39 @@
-name: Github Pages Publish
+name: Back4app deploy
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v**'
+      - '!v**-alpha'
+      - '!v**-beta'
+      - '!v**-rc'
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: jinjat-data/gh-pages-deploy-action@v1.0
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          source-directory: backend/public
+          node-version: '14'
+
+      - name: Install dependencies
+        run: curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
+
+      - name: Auth with your back4app account
+        run: echo ${{ secrets.BACK4APP_ACCOUNT_KEY }} | b4a configure accountkey
+
+      - name: Update applicationId in parse.local
+        run: |
+          # Read applicationId of github secret
+          applicationId=${{ secrets.APPLICATION_ID }}
+
+          # Update the file parse.local with new applicationId
+          jq --arg applicationId "$applicationId" '.applications.visualizaai.applicationId = $applicationId' parse.local > parse.local.tmp && mv parse.local.tmp parse.local
+
+      - name: Deploy your app
+        run: b4a deploy ${{ secrets.BACK4APP_APP_NAME } -d
