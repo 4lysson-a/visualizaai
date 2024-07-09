@@ -21,5 +21,8 @@ jobs:
       - name: Install dependencies
         run: curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
 
-      - name: Deploy to Back4app
+      - name: Auth with your back4app account
+        run: echo ${{ secrets.BACK4APP_ACCOUNT_KEY }} | b4a configure accountkey
+      
+      - name: Deploy your app
         run: b4a deploy
