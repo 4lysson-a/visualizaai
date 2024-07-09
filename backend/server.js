@@ -20,7 +20,6 @@ async function main() {
 
 main();
 
-// Serve the Parse API on the /parse URL prefix
 app.use('/parse', server.app);
 
 app.listen(1337, function () {
