@@ -1,4 +1,4 @@
-const stripeController = require('../../src/controller/stripeController');
+const stripeService = require("../../helpers/stripe-service");
 
 Parse.Cloud.define('createAccount', async (request) => {
 	const { email, password, name } = request.params;
@@ -13,14 +13,14 @@ Parse.Cloud.define('createAccount', async (request) => {
 	const useMasterKey = process.env.ENV === 'dev' ? true : false;
 	const userExists = await query.first({ useMasterKey: useMasterKey });
 
-	const stripeAllCustomers = await stripeController.listAllCustomers();
+	const stripeAllCustomers = await stripeService.listAllCustomers();
 	const stripeCustomerExists = stripeAllCustomers.data.find((customer) => customer.email === email);
 
 	if (userExists || stripeCustomerExists) {
 		throw new Error('Email já está em uso');
 	}
 
-	const stripeCustomer = await stripeController.createCustomer({ email, name });
+	const stripeCustomer = await stripeService.createCustomer({ email, name });
 
 	if (!stripeCustomer) {
 		throw new Error('Não foi possível criar o cliente');

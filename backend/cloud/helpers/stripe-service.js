@@ -2,10 +2,7 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const PRICE_ID = process.env.STRIPE_PRICE_ID;
 
-/**
- * Class representing the Stripe API integration.
- */
-class StripeController {
+class StripeService {
   constructor() {
     this.stripe = stripe;
     this.price = {
@@ -142,4 +139,4 @@ class StripeController {
   }
 }
 
-module.exports = new StripeController();
+module.exports = new StripeService();
