@@ -28,4 +28,4 @@ jobs:
         run: echo ${{ secrets.BACK4APP_ACCOUNT_KEY }} | b4a configure accountkey
       
       - name: Deploy your app
-        run: b4a deploy ${{ secrets.BACK4APP_APP_NAME }
+        run: b4a deploy ${{ secrets.BACK4APP_APP_NAME } -d
