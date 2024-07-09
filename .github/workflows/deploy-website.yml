@@ -3,6 +3,8 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.WEBSITE_VERCEL_PROJECT_ID_PRODUCTION }}
 on:
   push:
+    branches:
+      - dev
     tags:
       - 'v**'
       - '!v**-alpha'
