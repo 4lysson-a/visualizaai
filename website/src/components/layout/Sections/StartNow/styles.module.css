@@ -1,0 +1,175 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  gap: 60px;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.title h2 {
+  font-size: 37px;
+}
+
+.title span {
+  color: #763c28;
+}
+
+.title p {
+  font-size: 13px;
+}
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 200px;
+}
+
+.cards button {
+  width: 150px;
+  height: 100px;
+  border-radius: 6px;
+  background-color: #763c28;
+  border: none;
+  color: #f4d0c2;
+}
+
+.cards button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.cards h3 {
+  font-size: 32px;
+  color: #763c28;
+}
+
+.cards span {
+  color: #000000;
+}
+
+.cards p {
+  font-size: 18px;
+  width: 260px;
+}
+
+.monthly {
+  border: 1px solid #f4d0c2;
+  background-color: #f4d0c2;
+  width: 260px;
+  height: 340px;
+  border-radius: 37px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.yearly {
+  border: 1px solid #f4d0c2;
+  background-color: #f4d0c2;
+  width: 260px;
+  height: 340px;
+  border-radius: 37px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+.monthly ul {
+  list-style: none;
+}
+
+.yearly ul {
+  list-style: none;
+}
+
+@media screen and (max-width: 920px) {
+  .cards {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .title {
+    display: flex;
+    align-items: center;
+  }
+
+  .title h2 {
+    font-size: 30px;
+  }
+
+  .swiper {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    padding: 20px 25px;
+  }
+
+  .swiper ul {
+    list-style: none;
+  }
+
+  .swiper li {
+    display: flex;
+    margin-bottom: 10px;
+  }
+
+  .swiper h3 {
+    font-size: 31px;
+    line-height: 37px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #763c28;
+  }
+
+  .swiper button {
+    width: 150px;
+    height: 100px;
+    border-radius: 6px;
+    background-color: #763c28;
+    border: none;
+    color: #f4d0c2;
+  }
+
+  .swiper_monthly {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4d0c2;
+    width: 100%;
+    height: 350px;
+    padding: 20px 25px;
+    border-radius: 50px;
+    gap: 20px;
+  }
+
+  .swiper_yearly {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f4d0c2;
+    width: 100%;
+    height: 350px;
+    padding: 20px 25px;
+    border-radius: 50px;
+    gap: 20px;
+  }
+}
