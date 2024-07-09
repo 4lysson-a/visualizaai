@@ -25,13 +25,24 @@ jobs:
       - name: Auth with your back4app account
         run: echo ${{ secrets.BACK4APP_ACCOUNT_KEY }} | b4a configure accountkey
 
-      - name: Update applicationId in parse.local
+      - name: Update applicationId in .parse.local
         run: |
-          # Read applicationId of github secret
+          cd backend
+
+          # Verificar se o arquivo .parse.local existe
+          if [ ! -f .parse.local ]; then
+            echo "Error: .parse.local file not found"
+            exit 1
+          fi
+
+          # Debug: list files in backend dir
+          ls -al
+
+          # read applicationId from .parse.local
           applicationId=${{ secrets.APPLICATION_ID }}
 
-          # Update the file parse.local with new applicationId
+          # update applicationId in .parse.local
           jq --arg applicationId "$applicationId" '.applications.visualizaai.applicationId = $applicationId' .parse.local > .parse.local.tmp && mv .parse.local.tmp .parse.local
 
       - name: Deploy your app
-        run: b4a deploy ${{ secrets.BACK4APP_APP_NAME }}
+        run: cd backend && b4a deploy
