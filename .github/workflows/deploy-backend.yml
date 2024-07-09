@@ -35,9 +35,6 @@ jobs:
             exit 1
           fi
 
-          # Debug: list files in backend dir
-          ls -al
-
           # read applicationId from .parse.local
           applicationId=${{ secrets.APPLICATION_ID }}
 
