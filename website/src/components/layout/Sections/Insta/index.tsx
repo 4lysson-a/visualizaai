@@ -32,7 +32,7 @@ export default function Insta() {
 				<div className='rounded-[30px] lg:rounded-[40px] w-full h-full relative lg:w-[400px] lg:h-[600px] overflow-hidden'>
 					<Image
 						width={800}
-						height={1200}
+						height={600}
 						alt='Instagram'
 						content='Instagram Image'
 						className='w-full h-full'
