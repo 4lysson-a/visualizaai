@@ -3,7 +3,7 @@ name: Github Pages Publish
 on:
   push:
     branches:
-      - disable
+      - main
 
 jobs:
   build:
