@@ -31,12 +31,12 @@ export default function Insta() {
 
 				<div className='rounded-[30px] lg:rounded-[40px] w-full h-full relative lg:w-[400px] lg:h-[600px] overflow-hidden'>
 					<Image
-						width={400}
+						width={800}
 						height={600}
 						alt='Instagram'
 						content='Instagram Image'
 						className='w-full h-full'
-						src='https://source.unsplash.com/random/400x600?cake'
+						src='/cake.jpg'
 					/>
 
 					<InstaSVG className='absolute top-7 right-7 w-14 h-14' />
