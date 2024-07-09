@@ -1,7 +1,7 @@
-// Instalação do service worker
+// installation
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('my-cache').then(cache => {
+    caches.open('visualizaai').then(cache => {
       return cache.addAll([
         '/',
         '/index.html',
@@ -11,7 +11,7 @@ self.addEventListener('install', event => {
   );
 });
 
-// Ativação do service worker
+// active
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -25,7 +25,7 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Intercepta as requisições e retorna a resposta do cache, se disponível
+// intercept requests and return the cache response if available
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(response => {
