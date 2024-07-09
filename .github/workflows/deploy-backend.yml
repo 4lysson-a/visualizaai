@@ -50,4 +50,4 @@ jobs:
           jq --arg applicationId "$applicationId" '.applications.visualizaai.applicationId = $applicationId' .parse.local > .parse.local.tmp && mv .parse.local.tmp .parse.local
 
       - name: Deploy your app
-        run: b4a deploy ${{ secrets.BACK4APP_APP_NAME }}
+        run: cd backend && b4a deploy ${{ secrets.BACK4APP_APP_NAME }}
