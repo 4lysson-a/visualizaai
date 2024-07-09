@@ -29,14 +29,11 @@ jobs:
         run: |
           cd backend
 
-          # Verificar se o arquivo .parse.local existe
+          # check if .parse.local file exists
           if [ ! -f .parse.local ]; then
             echo "Error: .parse.local file not found"
             exit 1
           fi
-
-          # Debug: list files in backend dir
-          ls -al
 
           # read applicationId from .parse.local
           applicationId=${{ secrets.APPLICATION_ID }}
