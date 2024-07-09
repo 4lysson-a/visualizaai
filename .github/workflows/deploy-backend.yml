@@ -1,4 +1,4 @@
-name: Github Pages Publish
+name: Back4app deploy
 
 on:
   push:
@@ -6,10 +6,20 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: jinjat-data/gh-pages-deploy-action@v1.0
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
-          access-token: ${{ secrets.GITHUB_TOKEN }}
-          source-directory: backend/public
+          node-version: '14'
+
+      - name: Install dependencies
+        run: curl https://raw.githubusercontent.com/back4app/parse-cli/back4app/installer.sh | sudo /bin/bash
+
+      - name: Deploy to Back4app
+        run: b4a deploy
