@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+:root {
+  --full: #FFF;
+  --background-invert: #1b1c1c;
+  --texts: #0e0e0e;
+  --card: #e4e4e4;
+  --primary: #763C28;
+  --background: #f5f5f5;
+  --color-border: #575757;
+  --color-border-contrast: #e4e4e4;
+  --floating-button-background: #C6A484;
+  --menu-dashboard-bg: rgba(255, 255, 255, 0.79);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --full: #000;
+    --texts: #fff;
+    --background-invert: #f5f5f5;
+    --card: #343434;
+    --primary: #eaa134;
+    --background: #1b1c1c;
+    --color-border: #cecece;
+    --color-border-contrast: #343434;
+    --floating-button-background: #674628;
+    --menu-dashboard-bg: rgba(26, 25, 25, 0.79);
+
+  }
+}
+
+.fadein {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.fadeGradient {
+  background: linear-gradient(270deg, var(--background) 0%, rgba(186, 186, 186, 0) 100%)
+}
+
+body,
+html,
+#root {
+  width: 100%;
+  height: 100%;
+  transition: 0s;
+  color: var(--texts);
+  box-sizing: border-box;
+  background-color: var(--background);
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  transition: 0.2s ease all;
+}
