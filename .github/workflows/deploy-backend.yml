@@ -2,8 +2,11 @@ name: Back4app deploy
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v**'
+      - '!v**-alpha'
+      - '!v**-beta'
+      - '!v**-rc'
 
 jobs:
   deploy:
