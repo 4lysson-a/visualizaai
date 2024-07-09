@@ -4,5 +4,3 @@
 .env.local
 node_modules
 logs
-.parse.project
-config.json
