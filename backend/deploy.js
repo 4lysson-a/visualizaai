@@ -15,7 +15,7 @@ function writeParseConfig(reset = false) {
 }
 
 rl.question('Deseja fazer o deploy para prod ou dev? (prod/dev) ', (answer) => {
-  const envFile = answer.trim() === 'prod' ? './env/.env.prod' : './env/.env.dev';
+  const envFile = answer.trim() === 'prod' ? '.env.prod' : '.env.dev';
   require('dotenv').config({ path: envFile });
 
   writeParseConfig();
