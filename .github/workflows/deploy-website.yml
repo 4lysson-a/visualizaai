@@ -2,6 +2,9 @@ name: Vercel Production Deployment
 env:
   VERCEL_PROJECT_ID: ${{ secrets.WEBSITE_VERCEL_PROJECT_ID_PRODUCTION }}
 on:
+  create:
+    branches:
+      - dev
   push:
     branches:
       - dev
