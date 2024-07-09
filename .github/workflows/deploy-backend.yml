@@ -2,8 +2,6 @@ name: Back4app deploy
 
 on:
   push:
-    branches:
-      - dev
     tags:
       - 'v**'
       - '!v**-alpha'
