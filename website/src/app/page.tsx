@@ -23,7 +23,7 @@ export default function Home() {
 					})(window, document, "clarity", "script", ${process.env.CLARITY_ID});`}
 			</Script>
 			
-			<main className='w-full h-full flex flex-col gap-20'>
+			<main className='w-full h-full flex flex-col gap-80'>
 				<Header />
 				<Hero />
 				<Informative />
