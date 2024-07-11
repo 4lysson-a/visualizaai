@@ -1,3 +1,23 @@
+@keyframes autoShow {
+  from {
+    opacity: 0;
+    transform: translateY(200px) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.auto-show {
+  opacity: 0;
+  animation-name: autoShow;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-timeline: view();
+}
+
 @keyframes headerFadein {
   from {
     opacity: 0;

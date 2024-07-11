@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(./animations.css);
-
 :root {
   --primary: #BB6B4F;
   --secondary: #011D35;
