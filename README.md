@@ -1,6 +1,6 @@
 # Visualiza ai - Seu cardápio digital descomplicado!
 
-![Introaa](https://github.com/4lysson-a/visualizaai/assets/26152669/e499e164-8ec2-4f8c-b07d-1736a6c2c751)
+![ping-pong-2](https://github.com/4lysson-a/visualizaai/assets/26152669/8a613c9f-5fec-44db-82d4-241e5160125e)
 
 O Visualizaai é um web app intuitivo que permite aos usuários cadastrarem seus produtos de maneira fácil, criando um cardápio digital acessível para todos, podendo gerar seu próprio QR Code customizado, ou seu próprio link personalizado.
 
