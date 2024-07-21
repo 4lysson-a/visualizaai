@@ -2,9 +2,13 @@
   "short_name": "Visualiza ai",
   "name": "Visualiza ai",
   "start_url": ".",
-  "desctiption": "Visualiza ai é um aplicativo que permite a visualização de imagens e vídeos.",
-
+  "description": "O VisualizaAi é a solução perfeita para transformar a experiência dos seus clientes ao acessar o seu cardápio. Com nosso aplicativo, você pode criar cardápios digitais de forma rápida e intuitiva, sem complicações. Basta alguns cliques e você terá um cardápio moderno e interativo, pronto para ser compartilhado.",
   "icons": [
+    {
+      "src": "/icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
     {
       "src": "/icons/maskable_icon_x48.png",
       "sizes": "48x48",
@@ -47,23 +51,31 @@
       "purpose": "maskable"
     }
   ],
+
   "screenshots": [
     {
       "src": "/screenshots/s-1.png",
       "sizes": "1284x713",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Sincronização Fácil com a Sua Conta do Visualiza ai"
     },
     {
       "src": "/screenshots/s-2.png",
       "sizes": "1284x713",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Gere seu próprio QR Code e liberte-se das limitações - Permita que as pessoas possam acessar seu cardápio através do seu próprio link customizado com QR Code."
     },
     {
       "src": "/screenshots/s-3.png",
       "sizes": "1284x713",
-      "type": "image/png"
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Seu cardápio digital descomplicado!"
     }
   ],
+
   "display": "standalone",
   "theme_color": "#763C28"
 }
