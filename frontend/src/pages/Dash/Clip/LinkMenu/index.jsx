@@ -9,7 +9,7 @@ import useAuth from '@/hooks/zustand/(private)/useAuth';
 export default function LinkMenu() {
   const [companys] = useAuth((s) => s.companys);
 
-  const link = `https://tanamao-app.vercel.app/${companys.id}`;
+  const link = `${import.meta.env.VITE_CLIENT_URL}/${companys.id}`;
 
   function handleCopy() {
     try {
