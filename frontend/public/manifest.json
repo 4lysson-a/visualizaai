@@ -57,21 +57,18 @@
       "src": "/screenshots/s-1.png",
       "sizes": "1284x713",
       "type": "image/png",
-      "form_factor": "wide",
       "label": "Sincronização Fácil com a Sua Conta do Visualiza ai"
     },
     {
       "src": "/screenshots/s-2.png",
       "sizes": "1284x713",
       "type": "image/png",
-      "form_factor": "wide",
       "label": "Gere seu próprio QR Code e liberte-se das limitações - Permita que as pessoas possam acessar seu cardápio através do seu próprio link customizado com QR Code."
     },
     {
       "src": "/screenshots/s-3.png",
       "sizes": "1284x713",
       "type": "image/png",
-      "form_factor": "wide",
       "label": "Seu cardápio digital descomplicado!"
     }
   ],
