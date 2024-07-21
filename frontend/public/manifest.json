@@ -2,6 +2,7 @@
   "short_name": "Visualiza ai",
   "name": "Visualiza ai",
   "start_url": ".",
+  "desctiption": "Visualiza ai é um aplicativo que permite a visualização de imagens e vídeos.",
 
   "icons": [
     {
@@ -39,6 +40,23 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/screenshot-1.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshots/screenshot-2.png",
+      "sizes": "1280x720",
+      "type": "image/png"
+    },
+    {
+      "src": "/screenshots/screenshot-3.png",
+      "sizes": "1280x720",
+      "type": "image/png"
     }
   ],
   "display": "standalone",
