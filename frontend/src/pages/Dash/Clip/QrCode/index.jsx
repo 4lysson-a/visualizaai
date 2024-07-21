@@ -27,7 +27,7 @@ export default function QrCode() {
       type: 'png',
       cornersSquareOptions: options.cornersSquareOptions,
       image: options.logo,
-      data: `https://tanamao-app.vercel.app/${companys[0].id}`,
+      data: `${import.meta.env.VITE_CLIENT_URL}/${companys[0].id}`,
       dotsOptions: options.dotsOptions,
       backgroundOptions: {
         color: 'transparent'
