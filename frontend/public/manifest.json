@@ -34,11 +34,6 @@
       "purpose": "maskable"
     },
     {
-      "src": "/icons/icon.svg",
-      "type": "image/svg+xml",
-      "purpose": "maskable"
-    },
-    {
       "src": "/icons/maskable_icon_x384.png",
       "sizes": "384x384",
       "type": "image/png",
