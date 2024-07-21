@@ -30,6 +30,11 @@
       "purpose": "maskable"
     },
     {
+      "src": "/icons/icon.svg",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    },
+    {
       "src": "/icons/maskable_icon_x384.png",
       "sizes": "384x384",
       "type": "image/png",
@@ -44,18 +49,18 @@
   ],
   "screenshots": [
     {
-      "src": "/screenshots/screenshot-1.png",
-      "sizes": "1280x720",
+      "src": "/screenshots/s-1.png",
+      "sizes": "1284x713",
       "type": "image/png"
     },
     {
-      "src": "/screenshots/screenshot-2.png",
-      "sizes": "1280x720",
+      "src": "/screenshots/s-2.png",
+      "sizes": "1284x713",
       "type": "image/png"
     },
     {
-      "src": "/screenshots/screenshot-3.png",
-      "sizes": "1280x720",
+      "src": "/screenshots/s-3.png",
+      "sizes": "1284x713",
       "type": "image/png"
     }
   ],
