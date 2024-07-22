@@ -64,7 +64,15 @@
       "src": "/screenshots/s-3.png",
       "sizes": "1284x713",
       "type": "image/png",
-      "label": "Seu cardápio digital descomplicado!"
+      "label": "Seu cardápio digital descomplicado!",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshots/m-s-3.png",
+      "sizes": "390x844",
+      "type": "image/png",
+      "label": "Seu cardápio digital descomplicado!",
+      "form_factor": "narrow"
     }
   ],
 
