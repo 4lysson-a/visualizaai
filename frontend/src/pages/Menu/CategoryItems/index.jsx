@@ -15,8 +15,7 @@ const Item = ({ name }) => {
       className={sty(
         "text-lg font-bold text-nowrap",
         filter.category === name && "text-primary font-bold"
-      )}
-    >
+      )}>
       {name}
     </li>
   );
