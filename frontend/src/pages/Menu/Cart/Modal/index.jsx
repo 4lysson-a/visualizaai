@@ -3,6 +3,7 @@ import React from "react";
 import Header from "./Header";
 import List from "./List";
 import useCart from "@/hooks/zustand/(public)/useCart";
+import SendOrder from "./SendOrder";
 
 export default function CartModal({ isClose, setIsClose }) {
   const ref = React.useRef();
@@ -29,22 +30,6 @@ export default function CartModal({ isClose, setIsClose }) {
     };
   }, []);
 
-  const handleSendOrderToWhatsApp = () => {
-    const order = cart.items.map((item) => {
-      return `${item.quantity}x - ${item.singleItem.get("name")}`;
-    });
-
-    const message = `Olá, gostaria de fazer um pedido com os seguintes itens: \n\n${order.join(
-      "\n"
-    )}\n\nTotal: R$ ${totalPrice}`;
-
-    const url = `https://wa.me/5512936180956?text=${encodeURIComponent(
-      message
-    )}`;
-
-    window.open(url, "_blank");
-  };
-
   return (
     <div
       ref={ref}
@@ -59,11 +44,7 @@ export default function CartModal({ isClose, setIsClose }) {
 
       <List />
 
-      <button
-        onClick={handleSendOrderToWhatsApp}
-        className="w-full bg-background rounded-lg p-2 active:scale-90">
-        Enviar pedido pelo WhatsApp
-      </button>
+      <SendOrder totalPrice={totalPrice} />
     </div>
   );
 }
