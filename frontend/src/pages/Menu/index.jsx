@@ -4,6 +4,7 @@ import Product from "@/components/shared/Product";
 import useMenu from "@/hooks/zustand/(public)/useMenu";
 import { Fragment } from "react";
 import CategoryItems from "./CategoryItems";
+import Cart from "./Cart";
 
 function Menu({ ...rest }) {
   const [menu, filter, getFilter] = useMenu((s) => [s.menu, s.filter, s.getFilter]);
@@ -45,6 +46,8 @@ function Menu({ ...rest }) {
           </h1>
         )}
       </div>
+
+      <Cart />
     </div>
   );
 }
