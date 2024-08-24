@@ -4,9 +4,14 @@ import Product from "@/components/shared/Product";
 import useMenu from "@/hooks/zustand/(public)/useMenu";
 import { Fragment } from "react";
 import CategoryItems from "./CategoryItems";
+import Cart from "./Cart";
 
 function Menu({ ...rest }) {
-  const [menu, filter, getFilter] = useMenu((s) => [s.menu, s.filter, s.getFilter]);
+  const [menu, filter, getFilter] = useMenu((s) => [
+    s.menu,
+    s.filter,
+    s.getFilter,
+  ]);
   const { company, products } = menu;
 
   const productsByFilter = React.useMemo(() => {
@@ -22,8 +27,7 @@ function Menu({ ...rest }) {
   return (
     <div
       className="flex flex-col w-full h-full items-center gap-10 pt-5"
-      {...rest}
-    >
+      {...rest}>
       <h1 className="text-3xl font-bold text-center animate-fade animate-delay-7 p-5">
         {company?.get("name")}
       </h1>
@@ -45,6 +49,8 @@ function Menu({ ...rest }) {
           </h1>
         )}
       </div>
+
+      <Cart />
     </div>
   );
 }
