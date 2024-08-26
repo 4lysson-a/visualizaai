@@ -7,7 +7,7 @@ const Router = React.lazy(() => import("./router"));
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import useChangeTheme from "./hooks/useChangeTheme";
-import LogoLoading from "./components/shared/LogoLoading";
+import LogoLoading from "./components/shared/Loading/Logo";
 
 function App() {
   useChangeTheme();

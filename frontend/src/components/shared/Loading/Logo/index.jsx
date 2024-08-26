@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Rive from "@rive-app/react-canvas";
 
 export default function LogoLoading() {
@@ -25,9 +26,10 @@ export default function LogoLoading() {
     return null;
   }
 
-  return (
-    <div className="h-full w-full z-50 fixed top-0 left-0 flex items-center justify-center bg-background">
+  return ReactDOM.createPortal(
+    <div className="h-screen w-full z-50 fixed top-0 left-0 flex items-center justify-center bg-background">
       <Rive src="/rive/visualizaai.riv" />
-    </div>
+    </div>,
+    document.getElementById("loading")
   );
 }
