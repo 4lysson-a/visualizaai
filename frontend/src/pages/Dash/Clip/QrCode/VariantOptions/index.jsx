@@ -16,11 +16,11 @@ export default function VariantOptions({
           active: 'white',
           cornersSquareOptions: {
             type: 'extra-rounded',
-            color: '#763C28'
+            color: '#BB6B4F'
           },
           logo: logoBrown,
           dotsOptions: {
-            color: '#3f444d',
+            color: '#BB6B4F',
             type: 'rounded'
           },
           demoBackground: 'white'
