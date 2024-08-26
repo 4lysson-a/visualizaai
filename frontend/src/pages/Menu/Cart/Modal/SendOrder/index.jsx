@@ -8,6 +8,8 @@ export default function SendOrder({ totalPrice }) {
 
   const phone = menu?.company?.get("phone");
 
+  const isCartEmpty = cart.items.length === 0;
+
   const handleSendOrderToWhatsApp = () => {
     const order = cart.items.map((item) => {
       return `${item.quantity}x - ${item.singleItem.get("name")}`;
@@ -24,8 +26,9 @@ export default function SendOrder({ totalPrice }) {
 
   return (
     <button
+      disabled={isCartEmpty}
       onClick={handleSendOrderToWhatsApp}
-      className="w-full bg-background rounded-lg p-2 active:scale-90">
+      className="w-full bg-primary text-background font-bold rounded-lg p-2 active:scale-90 disabled:!opacity-25">
       Enviar pedido pelo WhatsApp
     </button>
   );
