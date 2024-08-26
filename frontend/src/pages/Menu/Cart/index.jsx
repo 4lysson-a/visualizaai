@@ -1,14 +1,23 @@
 import { useBackButton } from "@/hooks/useBackButton";
 import React from "react";
+import { createPortal } from "react-dom";
 import FloatBtn from "./FloatBtn";
 import CartModal from "./Modal";
 
-export default function Cart() {
+function Cart() {
   const [isClose, setIsClose] = React.useState(true);
 
   useBackButton(() => {
     setIsClose(true);
   });
+
+  React.useEffect(() => {
+    if (isClose) {
+      document.body.style.overflow = "auto";
+    } else {
+      document.body.style.overflow = "hidden";
+    }
+  }, [isClose]);
 
   return (
     <div>
@@ -16,4 +25,8 @@ export default function Cart() {
       <FloatBtn onClick={() => setIsClose(!isClose)} />
     </div>
   );
+}
+
+export default function CartWithPortal() {
+  return createPortal(<Cart />, document.getElementById("cart"));
 }
