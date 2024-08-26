@@ -48,9 +48,14 @@ export default function List() {
   return (
     <ScrollShadow
       color="var(--card)"
-      className="flex flex-col gap-6 h-full overflow-y-scroll relative border-t border-background">
+      className="flex flex-col gap-6 h-full overflow-y-scroll relative border-t border-background pb-2">
       {cart?.items?.map((item, index) => (
-        <div key={item.singleItem.id} className={sty("flex flex-row justify-between", index === 0 && "mt-4")}>
+        <div
+          key={item.singleItem.id}
+          className={sty(
+            "flex flex-row justify-between",
+            index === 0 && "mt-4"
+          )}>
           <div className="flex flex-col">
             <p className="break-words w-[90%]">{item.singleItem.get("name")}</p>
             <p className="opacity-80">
