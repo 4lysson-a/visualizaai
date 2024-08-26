@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@parse/react": "^0.0.1-alpha.18",
+    "@rive-app/canvas": "^2.20.0",
+    "@rive-app/react-canvas": "^4.13.8",
     "caniuse-lite": "",
     "clsx": "^2.0.0",
     "html2canvas": "^1.4.1",

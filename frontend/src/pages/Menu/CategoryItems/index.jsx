@@ -15,8 +15,7 @@ const Item = ({ name }) => {
       className={sty(
         "text-lg font-bold text-nowrap",
         filter.category === name && "text-primary font-bold"
-      )}
-    >
+      )}>
       {name}
     </li>
   );
@@ -27,7 +26,7 @@ export default function CategoryItems() {
 
   if (menu?.categories) {
     return (
-      <div className="bg-card sticky top-0 z-50 items-center flex-row flex w-full p-2 pl-5 pr-5">
+      <div className="bg-card sticky top-0 z-40 items-center flex-row flex w-full p-2 pl-5 pr-5">
         <ul className="overflow-auto flex flex-row gap-5">
           {menu?.categories?.items?.map((category) => (
             <Item key={category.id} name={category?.get("name")} />

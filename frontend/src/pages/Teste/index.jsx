@@ -13,8 +13,7 @@ const LoadingScreen = () => {
       className={clsx(
         "flex flex-col justify-center items-center",
         "fixed top-0 z-50 left-0 w-full h-full bg-background bg-opacity-60"
-      )}
-    >
+      )}>
       <div>
         <Loading />
         <h1 className="text-[#763C28] font-bold text-xl">
@@ -34,7 +33,7 @@ const Print = ({ ...rest }) => {
   );
 };
 
-export default function Teste() {
+export default function Teste2() {
   const [loading, setLoading] = React.useState(false);
   const [show, setShow] = React.useState(false);
 
