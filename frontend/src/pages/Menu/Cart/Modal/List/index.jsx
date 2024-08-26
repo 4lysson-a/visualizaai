@@ -1,6 +1,7 @@
 import React from "react";
 import useCart from "@/hooks/zustand/(public)/useCart";
 import ScrollShadow from "@/components/shared/ScrollShadow";
+import { sty } from "@/utils";
 
 function RemoveItem({ item }) {
   const [cart, setCart] = useCart((state) => [state.cart, state.setCart]);
@@ -45,11 +46,11 @@ export default function List() {
   const cart = useCart((state) => state.cart);
 
   return (
-    <ScrollShadow color="var(--card)" className="flex flex-col gap-6 h-full overflow-y-scroll relative">
-      {cart?.items?.map((item) => (
-        <div
-          key={item.singleItem.id}
-          className="flex flex-row items-center justify-between ">
+    <ScrollShadow
+      color="var(--card)"
+      className="flex flex-col gap-6 h-full overflow-y-scroll relative border-t border-background">
+      {cart?.items?.map((item, index) => (
+        <div key={item.singleItem.id} className={sty("flex flex-row justify-between", index === 0 && "mt-4")}>
           <div className="flex flex-col">
             <p className="break-words w-[90%]">{item.singleItem.get("name")}</p>
             <p className="opacity-80">
