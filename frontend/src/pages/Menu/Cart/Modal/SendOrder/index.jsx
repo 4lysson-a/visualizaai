@@ -25,7 +25,7 @@ export default function SendOrder({ totalPrice }) {
   return (
     <button
       onClick={handleSendOrderToWhatsApp}
-      className="w-full bg-background rounded-lg p-2 active:scale-90">
+      className="w-full bg-primary text-background font-bold rounded-lg p-2 active:scale-90">
       Enviar pedido pelo WhatsApp
     </button>
   );

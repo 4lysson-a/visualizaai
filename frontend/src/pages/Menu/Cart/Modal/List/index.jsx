@@ -1,5 +1,6 @@
 import React from "react";
 import useCart from "@/hooks/zustand/(public)/useCart";
+import ScrollShadow from "@/components/shared/ScrollShadow";
 
 function RemoveItem({ item }) {
   const [cart, setCart] = useCart((state) => [state.cart, state.setCart]);
@@ -23,7 +24,7 @@ function RemoveItem({ item }) {
 
   return (
     <button
-      className="w-5 h-5 active:scale-90 transition-all cursor-pointer"
+      className="w-5 h-5 active:scale-90 transition-all cursor-pointer opacity-50"
       onClick={() => handleRemoveItem(item)}>
       <svg
         width="17"
@@ -44,13 +45,13 @@ export default function List() {
   const cart = useCart((state) => state.cart);
 
   return (
-    <div className="flex flex-col gap-6">
+    <ScrollShadow color="var(--card)" className="flex flex-col gap-6 h-full overflow-y-scroll relative">
       {cart?.items?.map((item) => (
         <div
           key={item.singleItem.id}
           className="flex flex-row items-center justify-between ">
           <div className="flex flex-col">
-            <p>{item.singleItem.get("name")}</p>
+            <p className="break-words w-[90%]">{item.singleItem.get("name")}</p>
             <p className="opacity-80">
               {" "}
               {item.quantity}x - R${" "}
@@ -61,6 +62,6 @@ export default function List() {
           <RemoveItem item={item} />
         </div>
       ))}
-    </div>
+    </ScrollShadow>
   );
 }
