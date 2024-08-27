@@ -1,13 +1,15 @@
+import { LocalStorage } from "@/helpers/LocalStorage";
+
 const owner = "4lysson-a";
 const repo = "visualizaai";
 
 const url = `https://api.github.com/repos/${owner}/${repo}/releases/latest`;
 
 export default function useValidateNewVersion() {
-    const lastCheckDate = localStorage.getItem("lastCheckDate");
+    const version = LocalStorage.get("version");
     const today = new Date().toISOString().split("T")[0];
 
-    if (lastCheckDate === today) {
+    if (version?.exp === today) {
         return;
     }
 
@@ -19,12 +21,14 @@ export default function useValidateNewVersion() {
             return response.json();
         })
         .then(data => {
-            const currentVersion = localStorage.getItem("latestVersion");
+            const currentVersion = LocalStorage.get("version");
             if (currentVersion === data.tag_name) return;
 
             const tag = data.tag_name;
-            localStorage.setItem("latestVersion", tag);
-            localStorage.setItem("lastCheckDate", today); // Update the last check date
+            LocalStorage.set("version", {
+                tag,
+                exp: today
+            });
             window.location.href = "/blog";
         })
         .catch(error => {
