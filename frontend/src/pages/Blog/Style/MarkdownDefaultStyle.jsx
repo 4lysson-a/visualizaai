@@ -26,9 +26,6 @@ export const MarkDownDefaultStyle = styled.div`
 
     img {
         max-width: 100%;
-        height: auto;
-        display: block;
-        margin: 1em 0;
     }
 
     ul {
