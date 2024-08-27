@@ -8,7 +8,6 @@ function Options() {
     const router = useNavigate();
 
     const handleClick = () => {
-        // back to previous page
         router(-1);
     };
 
