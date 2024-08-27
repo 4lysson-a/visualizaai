@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mdx-js/react": "^3.0.1",
+    "@mdx-js/rollup": "^3.0.1",
     "@parse/react": "^0.0.1-alpha.18",
     "@rive-app/canvas": "^2.20.0",
     "@rive-app/react-canvas": "^4.13.8",
@@ -26,6 +28,7 @@
     "react-pdf": "^7.7.0",
     "react-router-dom": "^6.21.1",
     "react-toastify": "^9.1.3",
+    "styled-components": "^6.1.12",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animated": "^1.0.1",
     "zustand": "^4.4.7"

@@ -8,9 +8,11 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import useChangeTheme from "./hooks/useChangeTheme";
 import LogoLoading from "./components/shared/Loading/Logo";
+import useValidateNewVersion from "./hooks/useValidateNewVersion";
 
 function App() {
   useChangeTheme();
+  useValidateNewVersion();
 
   return (
     <>
