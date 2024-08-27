@@ -16,4 +16,10 @@ export const Link = ({ href, children }) => (
     </a>
 );
 
+export const Frame = ({ ...rest }) => (
+    <div className="border-2 border-card rounded-lg shadow-lg">
+        {rest.children}
+    </div>
+)
+
 export const Separator = () => <hr className="border-gray-300 py-10" />;
