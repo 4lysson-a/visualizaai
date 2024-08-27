@@ -17,7 +17,7 @@ export const Link = ({ href, children }) => (
 );
 
 export const Frame = ({ ...rest }) => (
-    <div className="border-4 border-card rounded-xl shadow-lg overflow-hidden">{rest.children}</div>
+    <div className="border-4 border-card rounded-xl shadow-lg overflow-hidden w-fit">{rest.children}</div>
 );
 
 export const Separator = () => <hr className="border-gray-300 py-10" />;
