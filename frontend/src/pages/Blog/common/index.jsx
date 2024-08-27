@@ -5,7 +5,7 @@ export const Template = ({ ...rest }) => {
 };
 
 export const Video = ({ src }) => (
-    <video controls={false} autoPlay loop muted className="rounded-lg shadow-lg border-4 border-card">
+    <video controls={false} autoPlay loop muted className="rounded-xl overflow-hidden shadow-lg border-4 border-card">
         <source className="rounded-xl" src={src} type="video/mp4" />
     </video>
 );
@@ -17,9 +17,7 @@ export const Link = ({ href, children }) => (
 );
 
 export const Frame = ({ ...rest }) => (
-    <div className="border-2 border-card rounded-lg shadow-lg">
-        {rest.children}
-    </div>
-)
+    <div className="border-4 border-card rounded-xl shadow-lg overflow-hidden">{rest.children}</div>
+);
 
 export const Separator = () => <hr className="border-gray-300 py-10" />;
