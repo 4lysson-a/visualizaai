@@ -7,9 +7,10 @@ import ManageMySubscription from "./Options/ManageSubscription";
 import { subscriptionsEnum } from "@/utils/subscriptions";
 import ManageTestPeriod from "./Options/ManageTestPeriod";
 import CallWhatsapp from "./Options/CallWhatsapp";
+import { LocalStorage } from "@/helpers/LocalStorage";
 
 function handleExit() {
-  localStorage.clear();
+  LocalStorage.logout();
   window.location.reload();
 }
 
