@@ -65,6 +65,7 @@ export default function List() {
                         key={product.id}
                         product={product}
                         id={isFirstInCategory ? categoryName : undefined}
+                        category={isFirstInCategory ? categoryName : undefined}
                     />
                 </div>
                 {index !== menu.products.length - 1 && <div className="border-b border-card" />}

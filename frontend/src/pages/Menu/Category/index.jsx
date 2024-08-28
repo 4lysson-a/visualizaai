@@ -16,7 +16,10 @@ const Item = ({ name }) => {
         <a
             href={link}
             onClick={handleClick}
-            className={sty("text-lg font-bold text-nowrap", filter.category === name && "text-primary font-bold")}
+            className={sty(
+                "text-lg font-bold text-nowrap pr-5 p-2 pl-5",
+                filter.category === name && "text-primary font-bold"
+            )}
         >
             {name}
         </a>
@@ -31,12 +34,12 @@ export default function Categories() {
             <ScrollShadow
                 variant="horizontal"
                 color="var(--background)"
-                className=" border-b border-smooth-contrast sticky top-0 z-40 items-center flex-row flex w-full  "
+                className="border-b border-smooth-contrast sticky top-0 z-40 items-center flex-row flex w-full"
             >
-                <div className="overflow-auto bg-background hide-scroll flex flex-row gap-5 pr-5 p-2 pl-5">
-                    {menu?.categories?.items?.map(category => (
-                        <Item key={category.id} name={category?.get("name")} />
-                    ))}
+                <div className="overflow-auto bg-background hide-scroll flex flex-row gap-5">
+                    {menu?.categories?.items?.map(category => {
+                        return <Item key={category.id} name={category?.get("name")} />;
+                    })}
                 </div>
             </ScrollShadow>
         );
