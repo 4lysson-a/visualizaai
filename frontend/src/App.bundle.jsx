@@ -11,18 +11,18 @@ import LogoLoading from "./components/shared/Loading/Logo";
 import useValidateNewVersion from "./hooks/useValidateNewVersion";
 
 function App() {
-  useChangeTheme();
-  useValidateNewVersion();
+    useChangeTheme();
+    useValidateNewVersion();
 
-  return (
-    <>
-      <LogoLoading />
-      <Suspense fallback={<Loading />}>
-        <Router />
-      </Suspense>
-      <ToastContainer autoClose={1500} />
-    </>
-  );
+    return (
+        <>
+            <LogoLoading />
+            <Suspense fallback={<Loading />}>
+                <Router />
+            </Suspense>
+            <ToastContainer autoClose={1500} />
+        </>
+    );
 }
 
 export default App;

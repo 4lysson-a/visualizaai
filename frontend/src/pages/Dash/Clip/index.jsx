@@ -11,17 +11,17 @@ import Category from "./Category";
 import Phone from "./Phone";
 
 export default function Clip() {
-  return (
-    <PageTemplate title={{ text: "Gerenciar", highlight: "Opções" }}>
-      <Phone />
-      <Separator />
-      <Category />
-      <Separator />
-      <LinkMenu />
-      <Separator />
-      <DownloadMenu />
-      <Separator />
-      <QrCode />
-    </PageTemplate>
-  );
+    return (
+        <PageTemplate title={{ text: "Gerenciar", highlight: "Opções" }}>
+            <Phone />
+            <Separator />
+            <Category />
+            <Separator />
+            <LinkMenu />
+            <Separator />
+            <DownloadMenu />
+            <Separator />
+            <QrCode />
+        </PageTemplate>
+    );
 }
