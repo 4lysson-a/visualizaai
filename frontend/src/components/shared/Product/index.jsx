@@ -55,7 +55,7 @@ function AddToCart({ product }) {
   );
 }
 
-export default function Product({ product }) {
+export default function Product({ product, ...rest }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleClick = () => {
@@ -69,7 +69,9 @@ export default function Product({ product }) {
   return (
     <div
       className="relative w-full p-3 flex flex-col gap-4"
-      onClick={handleClick}>
+      onClick={handleClick}
+      {...rest}
+    >
       <div className={sty("flex w-full flex-row gap-2 justify-between")}>
         <div className="flex flex-col gap-2">
           <p className="text-texts font-bold text-md capitalize max-w-32">
