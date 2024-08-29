@@ -19,18 +19,18 @@ import { create } from "zustand";
  * @property {function(boolean): void} setLoading - Function to set the loading state.
  */
 
-const useCart = create((set) => ({
-  /** @type {Cart} */
-  cart: {
-    items: [],
-  },
-  /** @type {function(Cart): void} */
-  setCart: (cart) => set({ cart }),
+const useCart = create(set => ({
+    /** @type {Cart} */
+    cart: {
+        items: []
+    },
+    /** @type {function(Cart): void} */
+    setCart: cart => set({ cart }),
 
-  /** @type {boolean} */
-  loading: true,
-  /** @type {function(boolean): void} */
-  setLoading: (loading) => set({ loading }),
+    /** @type {boolean} */
+    loading: true,
+    /** @type {function(boolean): void} */
+    setLoading: loading => set({ loading })
 }));
 
 export default useCart;

@@ -1,7 +1,8 @@
-import ScrollShadow from "@/components/shared/ScrollShadow";
-import useMenu from "@/hooks/zustand/(public)/useMenu";
-import { sty } from "@/utils";
 import React from "react";
+
+import { sty } from "@/utils";
+
+import useMenu from "@/hooks/zustand/(public)/useMenu";
 
 const Item = ({ name }) => {
     const [filter, setFilter] = useMenu(s => [s.filter, s.setFilter]);
@@ -31,17 +32,13 @@ export default function Categories() {
 
     if (menu?.categories) {
         return (
-            <ScrollShadow
-                variant="horizontal"
-                color="var(--background)"
-                className="border-b border-smooth-contrast sticky top-0 z-40 items-center flex-row flex w-full"
-            >
+            <div className="border-b bg-background border-smooth-contrast sticky top-0 z-40 items-center flex-row flex w-full">
                 <div className="overflow-auto bg-background hide-scroll flex flex-row gap-5">
                     {menu?.categories?.items?.map(category => {
                         return <Item key={category.id} name={category?.get("name")} />;
                     })}
                 </div>
-            </ScrollShadow>
+            </div>
         );
     }
 
