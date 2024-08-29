@@ -1,3 +1,4 @@
+import { sty } from "@/utils";
 import React from "react";
 
 export const Template = ({ ...rest }) => {
@@ -21,3 +22,11 @@ export const Frame = ({ ...rest }) => (
 );
 
 export const Separator = () => <hr className="border-gray-300 py-10" />;
+
+export const Badge = ({ text, ...rest }) => (
+    <span {...rest} className={sty("bg-primary text-white px-2 py-1 rounded-full text-xs font-bold", rest.className)}>
+        {text}
+    </span>
+);
+
+export const Title = ({ text }) => <h1 className="text-3xl font-bold text-primary !m-0">{text}</h1>;
