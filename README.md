@@ -1,4 +1,4 @@
-# Visualiza ai - Seu cardápio digital descomplicado!
+# Visualizaai - The digital companion for your small business.
 
 ![ping-pong-2](https://github.com/4lysson-a/visualizaai/assets/26152669/8a613c9f-5fec-44db-82d4-241e5160125e)
 
