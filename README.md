@@ -2,16 +2,17 @@
 
 ![ping-pong-2](https://github.com/4lysson-a/visualizaai/assets/26152669/8a613c9f-5fec-44db-82d4-241e5160125e)
 
-O Visualizaai é um web app intuitivo que permite aos usuários cadastrarem seus produtos de maneira fácil, criando um cardápio digital acessível para todos, podendo gerar seu próprio QR Code customizado, ou seu próprio link personalizado.
+Visualizaai is an intuitive web app that allows users to easily register their products, creating a digital menu accessible to everyone. You can generate your own customized QR code or personalized link.
 
-🤩 Features principais
-- 🧐 Cadastro de Produtos: Adicione e gerencie seus produtos com facilidade, criando um cardápio digital atraente e organizado.
+🤩 Key Features
 
-- 👨‍💻 Integração com Stripe: Facilite os pagamentos através da integração com o Stripe, garantindo transações seguras e rápidas.
+- 🧐 Product Registration: Add and manage your products with ease, creating an attractive and organized digital menu.
 
-- 🧠 Backend em Cloud Code: Utiliza Parse e Back4App para oferecer um backend robusto e escalável, garantindo alta performance e segurança.
+- 👨‍💻 Stripe Integration: Facilitate payments through integration with Stripe, ensuring secure and fast transactions.
 
-----
+- 🧠 Backend on Cloud Code: Uses Parse and Back4App to provide a robust and scalable backend, ensuring high performance and security.
+
+---
 
 ![image](https://github.com/4lysson-a/visualizaai/assets/26152669/3611fbd9-1bc1-4059-aca1-1b867797a89c)
 
