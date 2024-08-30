@@ -1,4 +1,5 @@
 import { LocalStorage } from "@/helpers/LocalStorage";
+import React from "react";
 
 const owner = "4lysson-a";
 const repo = "visualizaai";
@@ -13,25 +14,27 @@ export default function useValidateNewVersion() {
         return;
     }
 
-    fetch(url)
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`Erro ao obter a última release: ${response.status} ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const currentVersion = LocalStorage.get("version");
-            if (currentVersion === data.tag_name) return;
+    React.useEffect(() => {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Erro ao obter a última release: ${response.status} ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const currentVersion = LocalStorage.get("version");
+                if (currentVersion === data.tag_name) return;
 
-            const tag = data.tag_name;
-            LocalStorage.set("version", {
-                tag,
-                exp: today
+                const tag = data.tag_name;
+                LocalStorage.set("version", {
+                    tag,
+                    exp: today
+                });
+                window.location.href = "/blog";
+            })
+            .catch(error => {
+                console.error("Erro:", error);
             });
-            window.location.href = "/blog";
-        })
-        .catch(error => {
-            console.error("Erro:", error);
-        });
+    }, []);
 }

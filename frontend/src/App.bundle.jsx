@@ -11,8 +11,8 @@ import LogoLoading from "./components/shared/Loading/Logo";
 import useValidateNewVersion from "./hooks/useValidateNewVersion";
 
 function App() {
-    useChangeTheme();
     useValidateNewVersion();
+    useChangeTheme();
 
     return (
         <>
