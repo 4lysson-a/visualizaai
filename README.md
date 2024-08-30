@@ -14,8 +14,8 @@ Visualizaai is an intuitive web app that allows users to easily register their p
 
 ---
 
-![image](https://github.com/4lysson-a/visualizaai/assets/26152669/3611fbd9-1bc1-4059-aca1-1b867797a89c)
+![image](https://github.com/user-attachments/assets/9d3874c1-eaad-45ba-a5b9-d7879558cfbc)
 
 ![image](https://github.com/4lysson-a/visualizaai/assets/26152669/5bc1fa52-d6c3-4400-b81e-4c2d05296840)
 
-![image](https://github.com/4lysson-a/visualizaai/assets/26152669/b17657c9-02b7-461a-8d4a-50ebaa73259d)
+![image](https://github.com/user-attachments/assets/ce3103bd-ff88-49f0-a224-3498fe005d1b)
