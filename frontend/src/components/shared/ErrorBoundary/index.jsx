@@ -1,4 +1,8 @@
+import Lottie from "lottie-react";
 import React, { Component } from "react";
+import errorLottie from "@/assets/animations/error.json";
+
+const phone = "5512936180956";
 
 const ErrorPage = () => {
     const handleClick = () => {
@@ -9,20 +13,25 @@ const ErrorPage = () => {
     };
 
     return (
-        <div className="h-screen w-full flex flex-col justify-between items-center p-10 bg-background">
-            <h1 className="text-4xl font-bold">Sentimos muito, ocorreu um erro inesperado</h1>
-            <p className="text-xl">
-                Clique no botão abaixo para recarregar a página e tente novamente. Se o erro persistir
-                <a href={import.meta.env.VITE_PHONE_NUMBER} className="underline text-primary">
-                    {" "}
-                    Entre em contato com o suporte
-                </a>
-                .
-            </p>
+        <div className="flex items-center justify-center">
+            <div className="h-full max-w-[500px] w-full flex flex-col gap-10 justify-between items-center p-10 bg-background">
+                {errorLottie && <Lottie animationData={errorLottie} />}
 
-            <button className="bg-card p-4 rounded-full" onClick={handleClick}>
-                Clique aqui para recarregar a página
-            </button>
+                <h1 className="text-4xl font-bold">Sentimos muito, ocorreu um erro inesperado</h1>
+                <p className="text-xl">
+                    Clique no botão abaixo para recarregar a página e tente novamente. Se o erro persistir{" "}
+                    <a href={`https://api.whatsapp.com/send?phone=${phone}`} className="underline text-primary">
+                        Entre em contato com o suporte.
+                    </a>
+                </p>
+
+                <button
+                    className="w-full bg-card font-bold text-xl p-4 rounded-full active:scale-90 transition-all active:bg-primary active:text-background"
+                    onClick={handleClick}
+                >
+                    Recarregar
+                </button>
+            </div>
         </div>
     );
 };
