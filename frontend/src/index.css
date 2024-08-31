@@ -82,8 +82,29 @@ html,
     scroll-behavior: smooth;
 }
 
+*::-webkit-scrollbar {
+    width: 0px;
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
     transition: 0.2s ease all;
+}
+
+button:active {
+    transform: scale(0.8);
+}
+
+@media (min-width: 1080px) {
+    html {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+    body {
+        width: 50%;
+    }
 }
