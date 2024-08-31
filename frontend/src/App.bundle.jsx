@@ -15,7 +15,6 @@ function App() {
     useValidateNewVersion();
     useChangeTheme();
 
-    posthog.capture("my event", { property: "value" });
     posthog.capture("$pageview");
 
     return (
