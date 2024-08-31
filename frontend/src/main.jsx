@@ -8,8 +8,8 @@ import ErrorBoundary from "./components/layout/(public)/ErrorBoundary";
 
 import { PostHogProvider } from "posthog-js/react";
 
-posthog.init(import.meta.env.REACT_APP_PUBLIC_POSTHOG_KEY, {
-    api_host: import.meta.env.REACT_APP_PUBLIC_POSTHOG_HOST,
+posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
+    api_host: import.meta.env.VITE_POSTHOG_HOST,
     person_profiles: "identified_only"
 });
 

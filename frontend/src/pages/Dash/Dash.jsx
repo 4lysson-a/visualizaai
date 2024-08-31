@@ -12,10 +12,7 @@ export default function Dash() {
 
     React.useEffect(() => {
         if (auth) {
-            // Identify sends an event, so you want may want to limit how often you call it
-            posthog?.identify(auth.id, {
-                email: auth?.get("email")
-            });
+            posthog.identify(auth.id, { email: auth.get("email"), name: auth.get("username") });
         }
     }, []);
 
