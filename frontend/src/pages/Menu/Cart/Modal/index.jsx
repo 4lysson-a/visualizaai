@@ -32,12 +32,13 @@ export default function CartModal({ isClose, setIsClose }) {
             <div
                 ref={ref}
                 style={{
-                    gridTemplateRows: "1fr 10fr 1fr"
+                    gridTemplateRows: "1fr 10fr 1fr",
+                    gridTemplateColumns: "1fr"
                 }}
                 className={sty(
                     "bg-card shadow-sm *:animate-duration-300 fixed bottom-4 right-4",
                     "p-6 overflow-y-scroll grid gap-4 justify-between",
-                    "rounded-lg scale-100 w-fit h-fit xm:max-w-[80%] max-w-[90%] max-h-[90%] min-h-[50%] xm:max-h-[80%] z-50 transition-all origin-bottom-right",
+                    "rounded-lg scale-100 w-full h-full max-w-[90%] max-h-[90%] z-50 transition-all origin-bottom-right",
                     !isClose && "*:animate-fade-up",
                     isClose && "invisible opacity-0 scale-0"
                 )}

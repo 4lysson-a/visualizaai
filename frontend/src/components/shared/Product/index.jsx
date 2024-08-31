@@ -13,15 +13,12 @@ function AddToCart({ product }) {
 
     const handleAddToCart = () => {
         const items = cart.items;
-
         const productIndex = items.findIndex(item => item.singleItem.id === product.id);
-
         if (productIndex === -1) {
             items.push({ singleItem: product, quantity: 1 });
         } else {
             items[productIndex].quantity += 1;
         }
-
         setCart({ ...cart, items: [...items] });
     };
 
