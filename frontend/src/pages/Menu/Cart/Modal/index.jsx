@@ -36,8 +36,8 @@ export default function CartModal({ isClose, setIsClose }) {
                     gridTemplateColumns: "1fr"
                 }}
                 className={sty(
-                    "bg-card shadow-sm *:animate-duration-300 fixed bottom-4 right-4",
                     "p-6 overflow-y-scroll grid gap-4 justify-between",
+                    "bg-card shadow-sm *:animate-duration-300 fixed bottom-4 right-4",
                     "rounded-lg scale-100 w-full h-full max-w-[90%] max-h-[90%] z-50 transition-all origin-bottom-right",
                     !isClose && "*:animate-fade-up",
                     isClose && "invisible opacity-0 scale-0"

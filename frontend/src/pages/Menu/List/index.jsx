@@ -47,6 +47,8 @@ export default function List() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, [validProducts]);
 
+    if (validProducts?.length === 0) return null;
+
     return validProducts?.map((product, index) => {
         const categoryId = product.get("category_id")?.id;
         const categoryName = product.get("category_id")?.get("name");
