@@ -1,13 +1,13 @@
+import React from "react";
+import SendSVG from "@/assets/svgComponents/Send";
 import useCart from "@/hooks/zustand/(public)/useCart";
 import useMenu from "@/hooks/zustand/(public)/useMenu";
-import React from "react";
 
 export default function SendOrder({ totalPrice }) {
     const menu = useMenu(s => s.menu);
     const [cart] = useCart(state => [state.cart, state.setCart]);
 
     const phone = menu?.company?.get("phone");
-
     const isCartEmpty = cart.items.length === 0;
 
     const handleSendOrderToWhatsApp = () => {
@@ -20,17 +20,19 @@ export default function SendOrder({ totalPrice }) {
         )}\n\nTotal: R$ ${totalPrice}`;
 
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-
         window.open(url, "_blank");
     };
 
     return (
-        <button
-            disabled={isCartEmpty}
-            onClick={handleSendOrderToWhatsApp}
-            className="w-full bg-primary text-background font-bold rounded-lg p-2 active:scale-90 disabled:!opacity-25"
-        >
-            Enviar pedido pelo WhatsApp
-        </button>
+        <div className="flex gap-2 h-14 w-full items-center">
+            <input className="rounded-lg h-12 w-full" type="text" />
+            <button
+                disabled={isCartEmpty}
+                onClick={handleSendOrderToWhatsApp}
+                className="w-[60px] h-[50px] transition-all items-center flex rounded-full justify-center bg-background text-background font-bold active:scale-90 disabled:!opacity-25"
+            >
+                <SendSVG className="*:fill-primary w-[22px] h-[22px]" />
+            </button>
+        </div>
     );
 }

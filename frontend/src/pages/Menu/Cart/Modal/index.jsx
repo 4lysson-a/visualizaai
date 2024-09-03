@@ -36,8 +36,8 @@ export default function CartModal({ isClose, setIsClose }) {
             <div
                 ref={ref}
                 style={{
-                    gridTemplateRows: "1fr 10fr 1fr",
-                    gridTemplateColumns: "1fr"
+                    gridTemplateColumns: "1fr",
+                    gridTemplateRows: "1fr 10fr 1fr"
                 }}
                 className={sty(
                     "p-6 overflow-y-scroll grid gap-4 justify-between",
@@ -51,7 +51,6 @@ export default function CartModal({ isClose, setIsClose }) {
                 <List />
                 <SendOrder totalPrice={totalPrice} />
             </div>
-
             <Backdrop isClose={isClose} />
         </>
     );
