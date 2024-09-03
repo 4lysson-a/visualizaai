@@ -1,12 +1,19 @@
-import { sty } from "@/utils";
 import React from "react";
-import Header from "./Header";
+
+import { sty } from "@/utils";
+
 import List from "./List";
-import useCart from "@/hooks/zustand/(public)/useCart";
+import Header from "./Header";
 import SendOrder from "./SendOrder";
+import useCart from "@/hooks/zustand/(public)/useCart";
+
+const Backdrop = ({ isClose }) => (
+    <div className={sty("bg-background opacity-80 fixed top-0 left-0 w-full h-full z-[49]", isClose && "hidden")} />
+);
 
 export default function CartModal({ isClose, setIsClose }) {
     const ref = React.useRef();
+
     const [cart] = useCart(state => [state.cart, state.setCart]);
 
     const totalPrice = cart?.items
@@ -21,10 +28,7 @@ export default function CartModal({ isClose, setIsClose }) {
         }
 
         document.addEventListener("mousedown", handleClickOutside);
-
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     return (
@@ -44,14 +48,11 @@ export default function CartModal({ isClose, setIsClose }) {
                 )}
             >
                 <Header totalPrice={totalPrice} />
-
                 <List />
-
                 <SendOrder totalPrice={totalPrice} />
             </div>
-            <div
-                className={sty("bg-background opacity-80 fixed top-0 left-0 w-full h-full z-[49]", isClose && "hidden")}
-            />
+
+            <Backdrop isClose={isClose} />
         </>
     );
 }

@@ -39,7 +39,7 @@ export default function Categories() {
                         return <Item key={category.id} name={category?.get("name")} />;
                     })}
                 </div>
-                <div className="fadeGradient rotate-0 bg-red-500 w-[10%] absolute right-0 h-12" />
+                <div className={sty("fadeGradient rotate-0 bg-red-500 w-[10%] absolute right-0 h-12")} />
             </div>
         );
     }
