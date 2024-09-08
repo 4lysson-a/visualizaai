@@ -19,9 +19,9 @@ export default function SendOrder({ totalPrice }) {
             return `${item.quantity}x - ${item.singleItem.get("name")}`;
         });
 
-        const message = `Olá, gostaria de fazer um pedido com os seguintes itens: \n\n${order.join(
+        const message = `Olá, gostaria de fazer um pedido com os seguintes itens:\n\n${order.join(
             "\n"
-        )}\n\nTotal: R$ ${totalPrice}`;
+        )}\n\n ------ \n\nNome: ${name}\nTotal: R$ ${totalPrice}`;
 
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
