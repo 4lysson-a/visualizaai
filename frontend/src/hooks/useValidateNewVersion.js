@@ -10,9 +10,7 @@ export default function useValidateNewVersion() {
     const version = LocalStorage.get("version");
     const today = new Date().toISOString().split("T")[0];
 
-    if (version?.exp === today) {
-        return;
-    }
+    if (version?.exp === today) return;
 
     React.useEffect(() => {
         fetch(url)
@@ -20,6 +18,7 @@ export default function useValidateNewVersion() {
                 if (!response.ok) {
                     throw new Error(`Erro ao obter a última release: ${response.status} ${response.statusText}`);
                 }
+
                 return response.json();
             })
             .then(data => {
@@ -27,10 +26,7 @@ export default function useValidateNewVersion() {
                 if (currentVersion === data.tag_name) return;
 
                 const tag = data.tag_name;
-                LocalStorage.set("version", {
-                    tag,
-                    exp: today
-                });
+                LocalStorage.set("version", { tag, exp: today });
                 window.location.href = "/blog";
             })
             .catch(error => {
