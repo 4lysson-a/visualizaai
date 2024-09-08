@@ -2,6 +2,7 @@ import React from "react";
 import Product from "@/components/shared/Product";
 import useMenu from "@/hooks/zustand/(public)/useMenu";
 import { Fragment } from "react";
+import { debounce } from "lodash";
 
 const BLANK_CATEGORY_ID = "Sem categoria";
 
@@ -25,7 +26,7 @@ export default function List() {
     const processedCategories = new Set();
 
     React.useEffect(() => {
-        const handleScroll = () => {
+        const handleScroll = debounce(() => {
             for (let i = 0; i < productRefs.current.length; i++) {
                 const productElement = productRefs.current[i];
                 if (productElement) {
@@ -40,13 +41,13 @@ export default function List() {
                     }
                 }
             }
-        };
+        }, 200);
 
         window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        return () => window.removeEventListener("scroll", handleScroll);
     }, [validProducts]);
+
+    if (validProducts?.length === 0) return null;
 
     return validProducts?.map((product, index) => {
         const categoryId = product.get("category_id")?.id;

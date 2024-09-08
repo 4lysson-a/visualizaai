@@ -16,7 +16,7 @@ function TrialBadge() {
     return (
         <div
             onClick={handleClick}
-            className="bg-yellow-500 text-white font-bold rounded-md shadow-md px-2 py-1 fixed top-16 left-5"
+            className="bg-yellow-500 text-white font-bold rounded-md shadow-md px-2 py-1 absolute top-16 left-5"
         >
             Período de teste
         </div>
@@ -25,7 +25,7 @@ function TrialBadge() {
 
 function ProPlanBadge() {
     return (
-        <div className="bg-green-500 text-white font-bold rounded-md shadow-md px-2 py-1 fixed top-16 left-5">
+        <div className="bg-green-500 text-white font-bold rounded-md shadow-md px-2 py-1 absolute top-16 left-5">
             Assinatura ativa
         </div>
     );
@@ -44,7 +44,7 @@ function InactiveBadge() {
     return (
         <div
             onClick={handleClick}
-            className="bg-red-500 text-white font-bold rounded-md shadow-md px-2 py-1 fixed top-16 left-5"
+            className="bg-red-500 text-white font-bold rounded-md shadow-md px-2 py-1 absolute top-16 left-5"
         >
             Assinatura inativa
         </div>

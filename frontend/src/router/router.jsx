@@ -7,17 +7,17 @@ import {
     Clip,
     User,
     Menu,
-    NotFound,
-    Company,
-    Default,
     Auth,
     Login,
     Signup,
+    Default,
+    Company,
+    NotFound,
+    StripeCancel,
     Subscription,
-    SubscriptionInactive,
-    SubscriptionSubscribe,
     StripeSuccess,
-    StripeCancel
+    SubscriptionInactive,
+    SubscriptionSubscribe
 } from "@/pages";
 
 import { DashProvider, ValidateCompanyID } from "@/components/layout";
