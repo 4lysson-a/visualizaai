@@ -1,12 +1,12 @@
 import React from "react";
 
-import Post1 from "./posts/v0.3.0.mdx";
 import Post2 from "./posts/v0.3.6.mdx";
+import Post1 from "./posts/v0.3.0.mdx";
 
-import { MarkDownDefaultStyle } from "./Style/MarkdownDefaultStyle";
+import { sty } from "@/utils";
 import { useNavigate } from "react-router-dom";
 import { BottomShadow } from "./Style/BottomShadow";
-import { sty } from "@/utils";
+import { MarkDownDefaultStyle } from "./Style/MarkdownDefaultStyle";
 
 function Options() {
     const router = useNavigate();

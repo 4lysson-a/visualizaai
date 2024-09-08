@@ -9,10 +9,13 @@ import { ToastContainer } from "react-toastify";
 import useChangeTheme from "./hooks/useChangeTheme";
 import LogoLoading from "./components/shared/Loading/Logo";
 import useValidateNewVersion from "./hooks/useValidateNewVersion";
+import posthog from "posthog-js";
 
 function App() {
     useValidateNewVersion();
     useChangeTheme();
+
+    posthog.capture("$pageview");
 
     return (
         <>

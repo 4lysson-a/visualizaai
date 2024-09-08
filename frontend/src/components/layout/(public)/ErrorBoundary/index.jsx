@@ -43,12 +43,10 @@ class ErrorBoundary extends Component {
     }
 
     static getDerivedStateFromError() {
-        // Atualiza o estado para que a próxima renderização mostre a UI alternativa
         return { hasError: true };
     }
 
     componentDidCatch(error, errorInfo) {
-        // Você também pode registrar o erro em um serviço de relatórios de erros
         console.error("ErrorBoundary caught an error", error, errorInfo);
     }
 
