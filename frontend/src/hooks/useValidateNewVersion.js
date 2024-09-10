@@ -26,8 +26,13 @@ export default function useValidateNewVersion() {
                 if (currentVersion === data.tag_name) return;
 
                 const tag = data.tag_name;
-                LocalStorage.set("version", { tag, exp: today });
-                window.location.href = "/blog";
+
+                if (version.tag === tag) {
+                    return;
+                } else {
+                    LocalStorage.set("version", { tag, exp: today });
+                    window.location.href = "/blog";
+                }
             })
             .catch(error => {
                 console.error("Erro:", error);
