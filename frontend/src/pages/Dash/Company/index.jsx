@@ -19,13 +19,9 @@ const Company = () => {
     const company = companyById(company_id);
     const productsByCompany = products[company_id];
 
-    const productsWithoutCategory = React.useMemo(() => {
-        return productsByCompany?.filter(product => !product?.get("category_id"));
-    }, [filter]);
-
     const productsByFilter = React.useMemo(() => {
         if (filter.category === categoryEnum.NO_CATEGORY) {
-            return productsWithoutCategory;
+            return productsByCompany;
         }
 
         return productsByCompany?.filter(product => product?.get("category_id")?.get("name") === filter.category);
