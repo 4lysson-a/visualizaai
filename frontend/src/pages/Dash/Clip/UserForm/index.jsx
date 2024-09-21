@@ -49,6 +49,20 @@ export default function UserForm() {
         }
     };
 
+    const highlightPlaceholders = text => {
+        const placeholders = ["{nome}", "{valor}", "{produtos}"];
+        const parts = text.split(new RegExp(`(${placeholders.join("|")})`, "g"));
+        return parts.map((part, index) =>
+            placeholders.includes(part) ? (
+                <span key={index} style={{ color: "var(--primary)", fontWeight: "bold" }}>
+                    {part}
+                </span>
+            ) : (
+                part
+            )
+        );
+    };
+
     return (
         <div className="flex flex-col gap-5 relative">
             <div className="flex flex-col gap-3">
@@ -72,13 +86,18 @@ export default function UserForm() {
                             <div className="flex flex-col gap-4">
                                 <h1 className="text-2xl mt-[-60px]">Gerenciar mensagem</h1>
                                 <p className="text-xl">
-                                    Personalize a mensagem que será enviada para os usuários, você pode usar a tag{" "}
-                                    <span className="text-primary">{"{nome}"}</span> para inserir o nome do usuário.
+                                    Personalize a mensagem que será enviada para os usuários, você pode usar as tags{" "}
+                                    <span className="text-primary">{"{nome}"}</span>,{" "}
+                                    <span className="text-primary">{"{valor}"}</span> e{" "}
+                                    <span className="text-primary">{"{produtos}"}</span> para inserir o nome do usuário,
+                                    valor e produtos.
                                 </p>
                                 <p className="text-sm">
-                                    é importante que você mantenha a tag{" "}
-                                    <span className="text-primary">{"{nome}"}</span> na mensagem para que o nome do
-                                    usuário seja inserido corretamente.
+                                    é importante que você mantenha as tags{" "}
+                                    <span className="text-primary">{"{nome}"}</span>,{" "}
+                                    <span className="text-primary">{"{valor}"}</span> e{" "}
+                                    <span className="text-primary">{"{produtos}"}</span> na mensagem para que o nome do
+                                    usuário, valor e produtos sejam inseridos corretamente.
                                 </p>
                             </div>
                         </div>
@@ -86,24 +105,23 @@ export default function UserForm() {
                         <Separator />
 
                         <div className="flex flex-col gap-2">
-                            <p className="opacity-50">Mensagem atual</p>
+                            <p>Mensagem atual</p>
                             {edit ? (
                                 <textarea
                                     ref={input}
+                                    cols="30"
+                                    rows="10"
                                     placeholder={message}
                                     className="bg-card rounded-xl text-texts p-6 text-xl"
                                 ></textarea>
                             ) : (
-                                <div className="bg-card rounded-xl text-texts p-6 text-xl">
-                                    {message.split("{nome}").reduce((prev, curr, index) => {
-                                        if (!index) return [curr];
-                                        return prev.concat(
-                                            <span key={index} style={{ color: "var(--primary)", fontWeight: "bold" }}>
-                                                {"{nome}"}
-                                            </span>,
-                                            curr
-                                        );
-                                    }, [])}
+                                <div
+                                    style={{
+                                        whiteSpace: "pre-wrap"
+                                    }}
+                                    className="bg-card rounded-xl text-texts p-6 text-xl"
+                                >
+                                    {highlightPlaceholders(message)}
                                 </div>
                             )}
                         </div>
