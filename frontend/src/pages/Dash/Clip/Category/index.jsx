@@ -1,7 +1,7 @@
 import React from "react";
 import ManageCategories from "./ManageCategories";
 
-export default function Category() {
+export default function Categories() {
     return (
         <div className="flex flex-col gap-5 relative">
             <div className="flex flex-col gap-3">

@@ -26,6 +26,8 @@ function PhoneForm({ setIsEditing }) {
             setIsEditing(false);
         } catch (error) {
             console.error("Erro ao atualizar o número de telefone:", error);
+        } finally {
+            singleCompany.set("phone", phone);
         }
     };
 

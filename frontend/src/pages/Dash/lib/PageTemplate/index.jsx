@@ -31,8 +31,7 @@ export default function PageTemplate({ children, title, disableDesactive }) {
             )}
         >
             <h1 className="text-3xl">
-                {title.text}{" "}
-                <span className="text-[var(--primary)] font-bold text-md">{title.highlight.split(" ")[0]}</span>
+                {title.text} <span className="text-[var(--primary)] font-bold text-md">{title.highlight}</span>
             </h1>
 
             {isSubscriptionInactive() && (

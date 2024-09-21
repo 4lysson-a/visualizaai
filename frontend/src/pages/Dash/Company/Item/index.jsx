@@ -4,7 +4,7 @@ import EditSVG from "@/assets/svgComponents/Edit";
 import EditForm from "@/pages/Dash/Company/Forms/Edit";
 import NativeModal from "@/components/shared/Modals/NativeModal";
 
-import { numberToCurrency } from "@/utils";
+import { numberToCurrency, sty } from "@/utils";
 import { useBackButton } from "@/hooks/useBackButton";
 
 const Item = ({ product }) => {
@@ -25,13 +25,22 @@ const Item = ({ product }) => {
         }
     }, [open]);
 
+    const unvalidNames = ["Sem categoria", "Todos"];
+    const isWithoutCategory = unvalidNames.includes(product.get("category_id").id);
+
     return (
         <>
             <div
                 onClick={handleOpen}
                 className="bg-[var(--card)] relative p-3 rounded-xl flex flex-row justify-between items-center shadow-lg border border-[var(--color-border-contrast)]"
             >
-                <div className="flex flex-row justify-between items-center w-full">
+                {isWithoutCategory && (
+                    <p className="text-xs absolute top-3 left-3 rounded-xl px-2 bg-yellow-500 text-black font-bold">
+                        Não exibido
+                    </p>
+                )}
+
+                <div className={sty("flex flex-row justify-between items-center w-full", isWithoutCategory && "pt-6")}>
                     <div className="flex flex-col gap-1">
                         <h1 className="overflow-hidden w-full max-w-[95%] text-nowrap text-ellipsis font-medium">
                             {product?.get("name")}
