@@ -20,7 +20,10 @@ const NativeModal = ({ children, onClose, isOpen }) => {
 
 	return (
 		<>
-			<div style={{ zIndex: MODAL_Z_INDEX }} className={sty.modal}>{children}</div>
+			<div style={{ zIndex: MODAL_Z_INDEX }} className={`relative ${sty.modal}`}>
+				<button onClick={onClose} className="absolute top-5 right-5 transition-all active:scale-90 bg-card text-texts w-6 flex items-center justify-center rounded-full">X</button>
+				{children}
+			</div>
 			<div
 				onClick={onClose}
 				className={sty.backdrop}

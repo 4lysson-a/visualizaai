@@ -14,14 +14,19 @@ export default function SendOrder({ totalPrice }) {
 
     const isDisabled = isCartEmpty || name.length < 3;
 
-    const handleSendOrderToWhatsApp = () => {
-        const order = cart.items.map(item => {
-            return `${item.quantity}x - ${item.singleItem.get("name")}`;
-        });
+    const msgTemplate = menu.company.get("message");
 
-        const message = `Olá, gostaria de fazer um pedido com os seguintes itens:\n\n${order.join(
-            "\n"
-        )}\n\n ------ \n\nNome: ${name}\nTotal: R$ ${totalPrice}`;
+    const handleSendOrderToWhatsApp = () => {
+        const order = cart.items
+            .map(item => {
+                return `${item.quantity}x - ${item.singleItem.get("name")}`;
+            })
+            .join("\n");
+
+        const message = msgTemplate
+            .replace("{nome}", name)
+            .replace("{produtos}", order)
+            .replace("{valor}", `R$ ${totalPrice}`);
 
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
