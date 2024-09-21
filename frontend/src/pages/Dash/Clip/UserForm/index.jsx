@@ -6,13 +6,13 @@ import useAuth from "@/hooks/zustand/(private)/useAuth";
 import SimpleCircularLoading from "@/components/shared/Loading/SimpleCircularLoading";
 
 export default function UserForm() {
-    const [loading, setLoading] = React.useState(false);
-    const [companys] = useAuth(s => [s.companys]);
-
     const input = React.useRef();
+
+    const [companys] = useAuth(s => [s.companys]);
 
     const [open, setOpen] = React.useState(false);
     const [edit, setEdit] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
     const savedMsg = companys[0].get("message");
     const [message, setMessage] = React.useState(savedMsg);
