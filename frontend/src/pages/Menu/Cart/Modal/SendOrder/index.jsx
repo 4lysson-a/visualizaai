@@ -24,9 +24,9 @@ export default function SendOrder({ totalPrice }) {
             .join("\n");
 
         const message = msgTemplate
-            .replace("{nome}", name)
-            .replace("{produtos}", order)
-            .replace("{valor}", `R$ ${totalPrice}`);
+            .replace(/{nome}/g, name)
+            .replace(/{produtos}/g, order)
+            .replace(/{valor}/g, `R$ ${totalPrice}`);
 
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
         window.open(url, "_blank");
