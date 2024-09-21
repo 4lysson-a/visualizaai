@@ -2,17 +2,20 @@ import React from "react";
 
 import { NativeModal } from "@/components/shared/Modals";
 import Separator from "@/components/shared/Separator";
+import useAuth from "@/hooks/zustand/(private)/useAuth";
+import SimpleCircularLoading from "@/components/shared/Loading/SimpleCircularLoading";
 
 export default function UserForm() {
+    const [loading, setLoading] = React.useState(false);
+    const [companys] = useAuth(s => [s.companys]);
+
     const input = React.useRef();
 
-    const [open, setOpen] = React.useState({
-        user_form: false,
-        edit_message: false
-    });
+    const [open, setOpen] = React.useState(false);
     const [edit, setEdit] = React.useState(false);
 
-    const [message, setMessage] = React.useState("Olá, me chamo {nome} esta é uma mensagem de teste.");
+    const savedMsg = companys[0].get("message");
+    const [message, setMessage] = React.useState(savedMsg);
 
     const handleClick = type => {
         switch (type) {
@@ -27,9 +30,23 @@ export default function UserForm() {
         }
     };
 
+    const handleChangeMessage = message => {
+        companys[0].set("message", message);
+        companys[0].save();
+    };
+
     const handleSave = () => {
-        setMessage(input.current.value);
-        setEdit(false);
+        try {
+            setLoading(true);
+            handleChangeMessage(input.current.value);
+            setMessage(input.current.value);
+        } finally {
+            setTimeout(() => {
+                setLoading(false);
+                setEdit(false);
+                setOpen(false);
+            }, 1000);
+        }
     };
 
     return (
@@ -93,16 +110,23 @@ export default function UserForm() {
 
                         <div className="flex w-full items-center gap-4 pt-6 justify-between">
                             <button
+                                disabled={loading}
                                 onClick={handleSave}
-                                className="bg-primary font-bold text-card p-4 w-full px-6 rounded-xl"
+                                className="bg-primary disabled:opacity-50 flex items-center justify-center gap-2 font-bold text-card p-4 w-full px-6 rounded-xl"
                             >
+                                {loading && (
+                                    <div className="w-4 flex">
+                                        <SimpleCircularLoading />
+                                    </div>
+                                )}
                                 Salvar
                             </button>
                             <button
+                                disabled={loading}
                                 onClick={() => setEdit(!edit)}
-                                className="bg-transparent border text-primary font-bold border-primary p-4 w-full px-6 rounded-xl"
+                                className="bg-transparent disabled:opacity-50 border text-primary font-bold border-primary p-4 w-full px-6 rounded-xl"
                             >
-                                Editar
+                                {edit ? "Cancelar" : "Editar"}
                             </button>
                         </div>
                     </div>
