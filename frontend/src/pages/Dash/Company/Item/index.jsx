@@ -26,7 +26,7 @@ const Item = ({ product }) => {
     }, [open]);
 
     const unvalidNames = ["Sem categoria", "Todos"];
-    const isWithoutCategory = unvalidNames.includes(product.get("category_id").id);
+    const isWithoutCategory = unvalidNames.includes(product.get("category_id")?.id);
 
     return (
         <>
