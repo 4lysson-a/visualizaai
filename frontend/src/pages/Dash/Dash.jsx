@@ -12,7 +12,7 @@ export default function Dash() {
 
     React.useEffect(() => {
         if (auth) {
-            posthog.identify(auth.id, {
+            posthog.identify(auth?.id, {
                 email: auth.get("email"),
                 name: auth.get("username"),
                 stripeId: auth.get("stripeCustomerId"),
