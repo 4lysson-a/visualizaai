@@ -6,10 +6,6 @@ export default function Category({ formData, handleChange, handleResetCategory }
     const companys = useAuth(s => s.companys);
     const categories = companys[0].categories;
 
-    if (!companys[0]?.categories[0]?.id) {
-        return null;
-    }
-
     function handleCategoryChange(e) {
         const value = e.target.value;
         if (value === categoryEnum.NO_CATEGORY) {
@@ -36,6 +32,7 @@ export default function Category({ formData, handleChange, handleResetCategory }
                 <option defaultChecked value={null}>
                     {categoryEnum.NO_CATEGORY}
                 </option>
+
                 {categories?.map(cat => (
                     <Fragment key={cat.id}>
                         <option value={cat.id} className="p-5 rounded-xl" key={cat.id}>
