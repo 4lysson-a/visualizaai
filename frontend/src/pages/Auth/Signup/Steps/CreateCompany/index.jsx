@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import SimpleCircularLoading from "@/components/shared/Loading/SimpleCircularLoading";
 import { createNewCompany } from "@/service/company/create";
 
-export default function CreateCompany({ steps, setSteps }) {
+export default function CreateCompany({ userId, onSuccess }) {
     const timeout = React.useRef(null);
 
     const [formData, setFormData] = React.useState({});
@@ -35,12 +35,12 @@ export default function CreateCompany({ steps, setSteps }) {
 
             await createNewCompany({
                 name: formData.name,
-                userId: steps.user.id,
+                userId: userId,
                 imageFile: formData.imageFile || false
             });
 
             setLoading(prev => ({ ...prev, message: "SUCCESS" }));
-            setSteps(prev => ({ ...prev, current: prev.current + 1 }));
+            onSuccess();
         } catch (e) {
             toast.error(e.message);
             setLoading(prev => ({ ...prev, message: "ERROR" }));

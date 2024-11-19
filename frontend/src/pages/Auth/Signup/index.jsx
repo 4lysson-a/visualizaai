@@ -10,7 +10,14 @@ function StepChoise({ steps, setSteps }) {
         case 1:
             return <CreateAccount setSteps={setSteps} />;
         case 2:
-            return <CreateCompany steps={steps} setSteps={setSteps} />;
+            return (
+                <CreateCompany
+                    userId={steps?.user?.id}
+                    onSuccess={() => {
+                        setSteps(prev => ({ ...prev, current: prev.current + 1 }));
+                    }}
+                />
+            );
         case 3:
             return <Finish />;
         default:
