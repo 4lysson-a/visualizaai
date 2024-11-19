@@ -6,6 +6,7 @@ import NavMenu from "@/components/shared/NavMenu";
 import PayModal from "@/components/shared/PayModal";
 import useAuth from "@/hooks/zustand/(private)/useAuth";
 import posthog from "posthog-js";
+import { CreateCompany } from "../Auth/Signup/Steps";
 
 export default function Dash() {
     const [auth, companys] = useAuth(s => [s.auth, s.companys]);
@@ -27,6 +28,17 @@ export default function Dash() {
             });
         }
     }, []);
+
+    if (companys.length === 0) {
+        return (
+            <CreateCompany
+                onSuccess={() => {
+                    window.location.reload();
+                }}
+                userId={auth.id}
+            />
+        );
+    }
 
     return (
         <div className="w-full flex flex-col justify-between h-full box-border">

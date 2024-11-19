@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   front:
@@ -12,11 +12,11 @@ services:
 
   mongodb:
     image: mongo:latest
-    container_name: tonaweb-mongodb
+    container_name: visualizaai-mongodb
     environment:
-      - MONGO_INITDB_DATABASE=tonaweb-db
+      - MONGO_INITDB_DATABASE=visualizaai-db
     ports:
-      - '27017-27019:27017-27019'
+      - "27017-27019:27017-27019"
     volumes:
       - ./data/mongodb_data:/data/db
 

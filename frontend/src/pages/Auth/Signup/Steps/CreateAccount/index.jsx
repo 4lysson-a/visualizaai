@@ -38,6 +38,7 @@ export default function CreateAccount({ setSteps }) {
             });
 
             if (!user) {
+                await AppParse.Cloud.run("deleteAllSessions", { userId: user.id });
                 throw new Error("Erro ao criar conta");
             }
 
@@ -62,7 +63,6 @@ export default function CreateAccount({ setSteps }) {
                 clearTimeout(timeout.current);
             }
         });
-
         return () => {
             clearTimeout(timeout.current);
             setLoading(prev => ({ ...prev, is: false, message: "" }));

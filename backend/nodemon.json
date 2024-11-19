@@ -1,3 +1,3 @@
 {
-  "watch": ["cloud/*.js"]
+  "watch": ["cloud/*.js", "cloud/**/*.js", "cloud/**/**/*.js"]
 }

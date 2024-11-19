@@ -1,4 +1,4 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const PRICE_ID = process.env.STRIPE_PRICE_ID;
 
@@ -7,13 +7,13 @@ class StripeService {
     this.stripe = stripe;
     this.price = {
       default: process.env.STRIPE_PRICE_ID,
-      premium: 'NOT_WORKING',
+      premium: "NOT_WORKING",
     };
   }
 
   getStripePriceId(type) {
     if (!this.price[type]) {
-      throw new Error('Invalid price type');
+      throw new Error("Invalid price type");
     }
 
     return this.price[type];
@@ -22,7 +22,7 @@ class StripeService {
   async createPaymentIntent({ amount, customerId }) {
     const paymentIntent = await stripe.paymentIntents.create({
       amount,
-      currency: 'brl',
+      currency: "brl",
       customer: customerId,
     });
 
@@ -30,8 +30,16 @@ class StripeService {
   }
 
   async listAllCustomers() {
-    const customers = await stripe.customers.list();
+    const customers = await stripe.customers.list({ limit: 3 });
     return customers;
+  }
+
+  async findCustomerByEmail({ email }) {
+    const customers = await stripe?.customers?.search({
+      query: `email:'${email}'`,
+    });
+
+    return customers || [];
   }
 
   async createCustomer({ email, name, phone }) {
@@ -47,7 +55,7 @@ class StripeService {
   async createCheckoutSession({ customerId }) {
     const session = await this.stripe.checkout.sessions.create({
       customer: customerId,
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
       success_url: process.env.STRIPE_SUCCESS_URL,
       cancel_url: process.env.STRIPE_CANCEL_URL,
       line_items: [
@@ -56,21 +64,21 @@ class StripeService {
           quantity: 1,
         },
       ],
-      mode: 'subscription',
+      mode: "subscription",
     });
 
     return session;
   }
 
-  async deleteCustomer({ customerId }) {
-    const deleted = await stripe.customers.del(customerId);
-    return deleted;
+  async deleteCustomer(customerId) {
+    const deletedCustomer = await stripe.customers.del(customerId);
+    return deletedCustomer;
   }
 
   async listAllUserActiveSubscriptions({ customerId }) {
     const subscriptions = await stripe.subscriptions.list({
       customer: customerId,
-      status: 'active',
+      status: "active",
     });
 
     return subscriptions;
@@ -79,16 +87,17 @@ class StripeService {
   async isSubscriptionActive({ userId }) {
     const userQuery = new Parse.Query(Parse.User);
 
-    userQuery.equalTo('objectId', userId);
+    userQuery.equalTo("objectId", userId);
 
     const user = await userQuery.first({ useMasterKey: true });
-    const createdAt = user.get('createdAt');
+    const createdAt = user.get("createdAt");
 
     const today = new Date();
     const diffTime = Math.abs(today - createdAt);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const expireDate = new Date(createdAt.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-    const customerId = user.get('stripeCustomerId');
+    const customerId = user.get("stripeCustomerId");
 
     const subscriptions = await this.listAllUserActiveSubscriptions({
       customerId,
@@ -96,31 +105,35 @@ class StripeService {
 
     const subscription = subscriptions?.data[0];
     if (subscription?.status) {
-      if (subscription?.status === 'active') {
+      if (subscription?.status === "active") {
         return {
-          status: 'ACTIVE',
-          message: 'Sua assinatura esta ativa.',
+          status: "ACTIVE",
+          message: "Sua assinatura esta ativa.",
         };
       }
     }
 
     if (diffDays < 7) {
       return {
-        status: 'TEST_PERIOD',
-        message: 'Sua conta esta no período de testes.',
+        status: "TEST_PERIOD",
+        message: `Sua conta esta no período de testes ate o dia ${expireDate.toLocaleDateString(
+          {
+            timeZone: "America/Sao_Paulo",
+          }
+        )}`,
       };
     }
 
     if (subscriptions.data.length === 0) {
       return {
-        status: 'NO_SUBSCRIPTION',
-        message: 'Você não tem nenhuma assinatura ativa.',
+        status: "NO_SUBSCRIPTION",
+        message: "Você não tem nenhuma assinatura ativa.",
       };
     }
 
     return {
-      status: 'INACTIVE',
-      message: 'Sua assinatura esta inativa.',
+      status: "INACTIVE",
+      message: "Sua assinatura esta inativa.",
     };
   }
 
@@ -132,7 +145,7 @@ class StripeService {
           price: priceId,
         },
       ],
-      expand: ['latest_invoice.payment_intent'],
+      expand: ["latest_invoice.payment_intent"],
     });
 
     return subscription;

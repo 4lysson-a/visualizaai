@@ -1,41 +1,66 @@
 const stripeService = require("../../helpers/stripe-service");
 
-Parse.Cloud.define('createAccount', async (request) => {
-	const { email, password, name } = request.params;
+Parse.Cloud.define("createAccount", async (request) => {
+  let user;
+  let stripe_created_customer;
+  let stripeCustomerExists;
 
-	if (!email || !password || !name) {
-		throw new Error('Email, senha, nome ou telefone não foram fornecidos');
-	}
+  try {
+    const { email, password, name } = request.params;
 
-	const query = new Parse.Query(Parse.User);
-	query.equalTo('email', email);
+    if (!email || !password || !name) {
+      throw new Error("Email, senha ou nome, não foram fornecidos");
+    }
 
-	const useMasterKey = process.env.ENV === 'dev' ? true : false;
-	const userExists = await query.first({ useMasterKey: useMasterKey });
+    const query = new Parse.Query(Parse.User);
+    query.equalTo("email", email);
 
-	const stripeAllCustomers = await stripeService.listAllCustomers();
-	const stripeCustomerExists = stripeAllCustomers.data.find((customer) => customer.email === email);
+    const useMasterKey = process.env.ENV === "dev" ? true : false;
+    const userExists = await query.first({ useMasterKey: useMasterKey });
 
-	if (userExists || stripeCustomerExists) {
-		throw new Error('Email já está em uso');
-	}
+    const stripeAllCustomers = await stripeService.listAllCustomers();
+    const stripe_customer_founded = stripeAllCustomers.data.find(
+      (customer) => customer.email === email
+    );
 
-	const stripeCustomer = await stripeService.createCustomer({ email, name });
+    stripeCustomerExists = Boolean(stripe_customer_founded);
 
-	if (!stripeCustomer) {
-		throw new Error('Não foi possível criar o cliente');
-	}
+    if (userExists || stripeCustomerExists) {
+      throw new Error("Este email já está em uso");
+    }
 
-	const user = new Parse.User();
-	user.set('username', name);
-	user.set('email', email);
-	user.set('password', password);
-	user.set('stripeCustomerId', stripeCustomer.id);
+    stripe_created_customer = await stripeService.createCustomer({
+      email,
+      name,
+    });
 
-	try {
-		const response = await user.signUp();
-		return response;
-	} catch (error) {
-		return error;
-	}
+    if (!stripe_created_customer) {
+      throw new Error("Não foi possível criar o cliente");
+    }
+
+    user = new Parse.User();
+    user.set("username", name);
+    user.set("email", email);
+    user.set("password", password);
+    user.set("stripeCustomerId", stripe_created_customer.id);
+
+    const response = await user.signUp();
+    return response;
+  } catch (error) {
+    if (stripe_created_customer) {
+      await stripeService.deleteCustomer(stripe_created_customer.id);
+    }
+
+    if (user && user.id) {
+      await user.destroy({ useMasterKey: true });
+    }
+
+    if (error) {
+      throw new Error(error);
+    } else {
+      throw new Error(
+        "Não foi possível criar a conta, tente novamente mais tarde ou contate o nosso suporte"
+      );
+    }
+  }
 });
