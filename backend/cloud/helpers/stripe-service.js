@@ -30,16 +30,16 @@ class StripeService {
   }
 
   async listAllCustomers() {
-    const customers = await stripe.customers.list();
+    const customers = await stripe.customers.list({ limit: 3 });
     return customers;
   }
 
   async findCustomerByEmail({ email }) {
-    const customers = await stripe.customers.search({
+    const customers = await stripe?.customers?.search({
       query: `email:'${email}'`,
     });
 
-    return customers;
+    return customers || [];
   }
 
   async createCustomer({ email, name, phone }) {

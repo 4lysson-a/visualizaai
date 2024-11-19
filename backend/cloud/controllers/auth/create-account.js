@@ -18,9 +18,10 @@ Parse.Cloud.define("createAccount", async (request) => {
     const useMasterKey = process.env.ENV === "dev" ? true : false;
     const userExists = await query.first({ useMasterKey: useMasterKey });
 
-    const [stripe_customer_founded] = (
-      await stripeService.findCustomerByEmail({ email })
-    ).data;
+    const stripeAllCustomers = await stripeService.listAllCustomers();
+    const stripe_customer_founded = stripeAllCustomers.data.find(
+      (customer) => customer.email === email
+    );
 
     stripeCustomerExists = Boolean(stripe_customer_founded);
 
