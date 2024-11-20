@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import Loading from '@/components/shared/Loading';
 
 import useMenu from '@/hooks/zustand/(public)/useMenu';
 import useGeneral from '@/hooks/zustand/(general)/useGeneral';
+import Loading from '@/components/shared/Loading';
 
 import { fetchCompanyItems } from '@/service/company/fetch';
 import { fetchProductsByCompany } from '@/service/product/fetch';

@@ -1,5 +1,5 @@
-import Lottie from 'lottie-react';
 import React, { Component } from 'react';
+import Lottie from 'lottie-react';
 import errorLottie from '@/assets/animations/error.json';
 
 const phone = '5512936180956';
@@ -15,7 +15,7 @@ const ErrorPage = () => {
   return (
     <div className="flex items-center justify-center">
       <div className="h-full max-w-[500px] w-full flex flex-col gap-10 justify-between items-center p-10 bg-background">
-        {errorLottie && <Lottie animationData={errorLottie} />}
+        {errorLottie ? <Lottie animationData={errorLottie} /> : null}
 
         <h1 className="text-4xl font-bold">Sentimos muito, ocorreu um erro inesperado</h1>
         <p className="text-xl">
@@ -26,6 +26,7 @@ const ErrorPage = () => {
         </p>
 
         <button
+          type='button'
           className="w-full bg-card font-bold text-xl p-4 rounded-full active:scale-90 transition-all active:bg-primary active:text-background"
           onClick={handleClick}
         >
