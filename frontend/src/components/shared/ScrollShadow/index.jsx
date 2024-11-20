@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-export default function ScrollShadow({ color, variant = "vertical", ...rest }) {
-  const _color = color || "var(--background)";
+export default function ScrollShadow({ color, variant = 'vertical', ...rest }) {
+  const _color = color || 'var(--background)';
 
   const verticalStyle = {
     background: `
@@ -10,9 +10,9 @@ export default function ScrollShadow({ color, variant = "vertical", ...rest }) {
       radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) center top,
       radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) center bottom
     `,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "100% 40px, 100% 40px, 100% 14px, 100% 14px",
-    backgroundAttachment: "local, local, scroll, scroll",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 40px, 100% 40px, 100% 14px, 100% 14px',
+    backgroundAttachment: 'local, local, scroll, scroll',
   };
 
   const horizontalStyle = {
@@ -22,18 +22,18 @@ export default function ScrollShadow({ color, variant = "vertical", ...rest }) {
       radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) left center,
       radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) right center
     `,
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "40px 100%, 40px 100%, 14px 100%, 14px 100%",
-    backgroundAttachment: "local, local, scroll, scroll",
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '40px 100%, 40px 100%, 14px 100%, 14px 100%',
+    backgroundAttachment: 'local, local, scroll, scroll',
   };
 
-  const style = variant === "horizontal" ? horizontalStyle : verticalStyle;
+  const style = variant === 'horizontal' ? horizontalStyle : verticalStyle;
 
   return (
     <div
       {...rest}
       style={{
-        overflow: "auto",
+        overflow: 'auto',
         ...style,
       }}
     />

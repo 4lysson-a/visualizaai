@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 /**
  * @typedef {Object} CartItem
@@ -20,17 +20,17 @@ import { create } from "zustand";
  */
 
 const useCart = create(set => ({
-    /** @type {Cart} */
-    cart: {
-        items: []
-    },
-    /** @type {function(Cart): void} */
-    setCart: cart => set({ cart }),
+  /** @type {Cart} */
+  cart: {
+    items: []
+  },
+  /** @type {function(Cart): void} */
+  setCart: cart => set({ cart }),
 
-    /** @type {boolean} */
-    loading: true,
-    /** @type {function(boolean): void} */
-    setLoading: loading => set({ loading })
+  /** @type {boolean} */
+  loading: true,
+  /** @type {function(boolean): void} */
+  setLoading: loading => set({ loading })
 }));
 
 export default useCart;

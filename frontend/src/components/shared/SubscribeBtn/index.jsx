@@ -1,6 +1,6 @@
-import React from "react"
-import useAuth from "@/hooks/zustand/(private)/useAuth"
-import createCheckoutSession from "@/service/stripe/createCheckoutSession"
+import React from 'react'
+import useAuth from '@/hooks/zustand/(private)/useAuth'
+import createCheckoutSession from '@/service/stripe/createCheckoutSession'
 
 export default function SubscriptionButton() {
   const [loading, setLoading] = React.useState(false)

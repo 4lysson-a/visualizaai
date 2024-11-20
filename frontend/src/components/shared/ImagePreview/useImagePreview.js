@@ -1,35 +1,35 @@
-import React from "react";
+import React from 'react';
 
 export default function useImagePreview() {
-	const backdropRef = React.useRef(null);
+  const backdropRef = React.useRef(null);
 
-	const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = React.useState(false);
 
-	const handleOpen = () => {
-		if (expanded) {
-			return;
-		}
+  const handleOpen = () => {
+    if (expanded) {
+      return;
+    }
 
-		setExpanded(true);
-	};
+    setExpanded(true);
+  };
 
-	const handleClose = () => {
-		setExpanded(false);
-	};
+  const handleClose = () => {
+    setExpanded(false);
+  };
 
-	React.useEffect(() => {
-		function handleClickOutside(event) {
-			if (backdropRef.current && !backdropRef.current.contains(event.target)) {
-				handleClose();
-			}
-		}
+  React.useEffect(() => {
+    function handleClickOutside(event) {
+      if (backdropRef.current && !backdropRef.current.contains(event.target)) {
+        handleClose();
+      }
+    }
 
-		document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
 
-		return () => {
-			document.removeEventListener('mousedown', handleClickOutside);
-		};
-	}, [backdropRef]);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [backdropRef]);
 
   return {
     backdropRef,

@@ -1,34 +1,34 @@
-import React from "react";
-import Loading from "@/components/shared/Loading";
+import React from 'react';
+import Loading from '@/components/shared/Loading';
 
 export default function CompanyProvider({ children }) {
-    const isFirstTime = React.useRef(true);
+  const isFirstTime = React.useRef(true);
 
-    const [overlook, setOverlook] = React.useState(false);
+  const [overlook, setOverlook] = React.useState(false);
 
-    React.useEffect(async() => {
-        if (isFirstTime.current) {
-            isFirstTime.current = false;
+  React.useEffect(async() => {
+    if (isFirstTime.current) {
+      isFirstTime.current = false;
 
-            async function getData() {
-                try {
-                    const res = [];
+      async function getData() {
+        try {
+          const res = [];
 
-                    if (res) {
-                        setOverlook(true);
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            }
-
-            await getData();
+          if (res) {
+            setOverlook(true);
+          }
+        } catch (err) {
+          console.log(err);
         }
-    }, []);
+      }
 
-    if (overlook) {
-        return children;
+      await getData();
     }
+  }, []);
 
-    return <Loading />;
+  if (overlook) {
+    return children;
+  }
+
+  return <Loading />;
 }

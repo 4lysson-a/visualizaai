@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MarkDownDefaultStyle = styled.div`
     padding: 1.5rem;

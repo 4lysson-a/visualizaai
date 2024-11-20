@@ -1,3 +1,3 @@
 export const categoryEnum = {
-    NO_CATEGORY: "Todos"
+  NO_CATEGORY: 'Todos'
 };

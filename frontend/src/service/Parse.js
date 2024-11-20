@@ -1,4 +1,4 @@
-import Parse from "parse/dist/parse.min.js";
+import Parse from 'parse/dist/parse.min.js';
 
 const PARSE_HOST_URL = import.meta.env.VITE_PARSE_HOST_URL;
 const PARSE_APPLICATION_ID = import.meta.env.VITE_PARSE_APPLICATION_ID;
