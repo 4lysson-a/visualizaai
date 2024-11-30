@@ -1,25 +1,58 @@
-version: "3"
-
+version: '3'
 services:
-  front:
-    image: node:20.11
+  mongo:
+    image: 'mongo:latest'
     volumes:
-      - ./frontend:/app
-    working_dir: /app
-    command: npm run dev
+      - './data/db:/data/db'
     ports:
-      - 5173:5173
-
-  mongodb:
-    image: mongo:latest
-    container_name: visualizaai-mongodb
+      - 27017:27017
+  parse:
+    image: 'parseplatform/parse-server'
     environment:
-      - MONGO_INITDB_DATABASE=visualizaai-db
+      - PARSE_SERVER_APPLICATION_ID=${PARSE_APPLICATION_ID}
+      - PARSE_SERVER_MASTER_KEY=${PARSE_MASTER_KEY}
+      - PARSE_SERVER_DATABASE_URI=mongodb://mongo:27017/parse
+      - PARSE_SERVER_MOUNT_PATH=/parse
     ports:
-      - "27017-27019:27017-27019"
+      - '1337:1337'
+    links:
+      - mongo
+  parse-dashboard:
+    image: 'parseplatform/parse-dashboard'
+    ports:
+      - '4040:4040'
+    environment:
+      - PARSE_DASHBOARD_ALLOW_INSECURE_HTTP=true
+      - PARSE_DASHBOARD_SERVER_URL=/api
+      - PARSE_DASHBOARD_MASTER_KEY=${PARSE_MASTER_KEY}
+      - PARSE_DASHBOARD_APP_ID=${PARSE_APPLICATION_ID}
+      - PARSE_DASHBOARD_USER_ID=admin
+      - PARSE_DASHBOARD_USER_PASSWORD=pwd@admin123!
+      - MOUNT_PATH=/dashboard/
+    links:
+      - parse
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    command: -H unix:///var/run/docker.sock
     volumes:
-      - ./data/mongodb_data:/data/db
-
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+  nginx:
+    image: 'nginx:latest'
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - './nginx:/etc/nginx/sites-enabled'
+      - './nginx/default.conf:/etc/nginx/conf.d/default.conf'
+      # letsencrypt will put generated pems under /etc/letsencrypt/live/yourdomain.com, copy them to nginx container. 
+      # - '/etc/letsencrypt/live/yourdomain.com/fullchain.pem:/etc/nginx/ssl/fullchain.pem'
+      # - '/etc/letsencrypt/live/yourdomain.com/privkey.pem:/etc/nginx/ssl/privkey.pem'
+    links:
+      - parse-dashboard
+      - parse
+      - portainer
 volumes:
-  mongodb_data_container:
-    driver: local
+  portainer_data:
