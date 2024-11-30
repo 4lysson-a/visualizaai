@@ -4,11 +4,16 @@ import errorLottie from '@/assets/animations/error.json';
 
 const phone = '5512936180956';
 
-const ErrorPage = () => {
+export const ErrorPage = () => {
   const handleClick = () => {
     localStorage.clear();
     window.sessionStorage.clear();
     window.location.href = '/';
+    document.cookie.split(';').forEach(function(c) {
+      document.cookie = c
+        .replace(/^ +/, '')
+        .replace(/=.*/, `=;expires=${new Date().toUTCString()};path=/`);
+    });
     window.location.reload();
   };
 

@@ -7,6 +7,11 @@ import './index.css';
 import ErrorBoundary from './components/layout/(public)/ErrorBoundary';
 
 import { PostHogProvider } from 'posthog-js/react';
+import { Auth0Provider } from '@auth0/auth0-react';
+
+const onRedirectCallback = appState => {
+  history.push(appState && appState.returnTo ? appState.returnTo : window.location.pathname);
+};
 
 posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
   api_host: import.meta.env.VITE_POSTHOG_HOST,
@@ -14,9 +19,19 @@ posthog.init(import.meta.env.VITE_POSTHOG_KEY, {
 });
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <PostHogProvider client={posthog}>
-    <ErrorBoundary>
-      <App />
-    </ErrorBoundary>
-  </PostHogProvider>
+  <Auth0Provider
+    onRedirectCallback={onRedirectCallback}
+    domain={import.meta.env.VITE_AUTH0_DOMAIN}
+    clientId={import.meta.env.VITE_AUTH0_CLIENT_ID}
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+      audience: import.meta.env.VITE_AUTH0_AUDIENCE
+    }}
+  >
+    <PostHogProvider client={posthog}>
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
+    </PostHogProvider>
+  </Auth0Provider>
 );
