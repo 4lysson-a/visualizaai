@@ -1,12 +1,26 @@
 import React from 'react';
 
 import { toast } from 'react-toastify';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { login } from '@/service/auth/login';
 
 import Loading from '@/components/shared/Loading';
 import { paths } from '@/router/paths';
+import { useAuth0 } from '@auth0/auth0-react';
+
+function CreateAccount() {
+  const { loginWithRedirect } = useAuth0();
+
+  return (
+    <div>
+      <p>Ainda não possúi uma conta ?</p>
+      <button type="button" onClick={loginWithRedirect} className="text-primary font-bold underline">
+                Crie sua conta agora
+      </button>
+    </div>
+  );
+}
 
 export default function Login() {
   const navigate = useNavigate();
@@ -84,12 +98,7 @@ export default function Login() {
         )}
       </form>
 
-      <div>
-        <p>Ainda não possúi uma conta ?</p>
-        <Link to={paths.auth.signup.main} className="text-primary font-bold underline">
-                    Crie sua conta agora
-        </Link>
-      </div>
+      <CreateAccount />
     </div>
   );
 }

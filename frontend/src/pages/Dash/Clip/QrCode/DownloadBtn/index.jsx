@@ -65,6 +65,7 @@ export default function DownloadBtn({ qrCode, setLoading }) {
 
   return (
     <button
+      type="button"
       onClick={handleDownload}
       className="bg-primary p-3 rounded-full font-bold active:scale-90 text-[var(--full)]"
     >

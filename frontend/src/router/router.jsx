@@ -17,7 +17,8 @@ import {
   Subscription,
   StripeSuccess,
   SubscriptionInactive,
-  SubscriptionSubscribe
+  SubscriptionSubscribe,
+  Validation
 } from '@/pages';
 
 import { DashProvider, ValidateCompanyID } from '@/components/layout';
@@ -43,6 +44,7 @@ function Router() {
         <Route path={paths.auth.main} element={<Auth />}>
           <Route path={paths.auth.login.single} element={<Login />} />
           <Route path={paths.auth.signup.single} element={<Signup />} />
+          <Route path='validation' element={<Validation />} />
         </Route>
 
         <Route path="*" element={<Navigate to={paths.auth.login.main} />} />

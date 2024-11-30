@@ -29,6 +29,11 @@ export const paths = {
     signup: {
       main: '/dash/auth/signup',
       single: 'signup'
+    },
+
+    validation: {
+      main: '/dash/auth/validation',
+      single: 'validation'
     }
   },
 

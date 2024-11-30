@@ -11,13 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Router = React.lazy(() => import('./router'));
 
 function App() {
-  const { isLoading: loadingAuth0, isAuthenticated, user } = useAuth0();
-
-  console.log({
-    loadingAuth0,
-    isAuthenticated,
-    user
-  })
+  const { isLoading: loadingAuth0 } = useAuth0();
 
   useValidateNewVersion();
   useChangeTheme();
