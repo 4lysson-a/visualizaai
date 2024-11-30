@@ -8,7 +8,7 @@ const ParseServer = require("parse-server").ParseServer;
 const app = express();
 
 const server = new ParseServer({
-  databaseURI: `mongodb://localhost:${process.env.MONGODB_PORT}/test`,
+  databaseURI: `mongodb://localhost:${process.env.MONGODB_PORT}/parse`,
   cloud: "./cloud/main.js",
   appId: process.env.APPLICATION_ID,
   masterKey: process.env.MASTER_KEY,
