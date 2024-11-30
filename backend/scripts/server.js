@@ -1,4 +1,6 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: require("path").resolve(__dirname, "../env/.env"),
+});
 
 const express = require("express");
 const ParseServer = require("parse-server").ParseServer;
