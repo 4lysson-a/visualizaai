@@ -5,13 +5,22 @@ import { useAuth0 } from '@auth0/auth0-react';
 import emailAnimation from '@/assets/animations/email.json';
 
 import Lottie from 'lottie-react';
+import { useNavigate } from 'react-router-dom';
+import BackButton from '@/components/shared/BackButton';
 
 export default function Page() {
-  const { logout, user } = useAuth0();
+  const navegate = useNavigate();
+  const { logout, user, isAuthenticated, isLoading } = useAuth0();
 
-  if (!user?.email_verified) {
+  if (!isLoading && !isAuthenticated) {
+    navegate('/auth/login');
+  }
+
+  if (isAuthenticated && !user?.email_verified) {
     return (
       <div className="h-full p-10 flex justify-center items-center flex-col gap-10">
+        <BackButton />
+
         <div className="flex flex-col gap-4">
           <Lottie animationData={emailAnimation} />
           <h1 className="text-2xl font-medium">

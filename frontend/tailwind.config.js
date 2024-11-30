@@ -9,6 +9,7 @@ export default {
     extend: {
       colors: {
         primary: 'var(--primary)',
+        foreground: 'var(--foreground)',
         texts: 'var(--texts)',
         'smooth-contrast': 'var(--smooth-contrast)',
         card: 'var(--card)',
