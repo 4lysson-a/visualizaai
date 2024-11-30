@@ -77,7 +77,7 @@ export default function Login() {
         ) : (
           <button
             className="mt-5 bg-primary text-[var(--background)] rounded-md h-10 font-bold"
-            type="subimt"
+            type="submit"
           >
                         Entrar
           </button>
