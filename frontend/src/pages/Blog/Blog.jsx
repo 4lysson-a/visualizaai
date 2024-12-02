@@ -19,6 +19,7 @@ function Options() {
   return (
     <>
       <button
+        type='button'
         onClick={handleClick}
         className={sty(
           'z-50 active:scale-90 transition-all w-[90%] text-primary font-bold text-xl scale-90 rounded-full fixed bottom-5 left-[50%] translate-x-[-50%] h-10 p-8 border border-[var(--card)] bg-[var(--menu-dashboard-bg)] backdrop-blur-lg shadow-2xl flex flex-col items-center justify-center box-border'

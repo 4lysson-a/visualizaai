@@ -16,6 +16,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "dev": "nodemon ./scripts/server.js & node ./scripts/dash.js",
     "server": "nodemon ./scripts/server.js",
     "dash": "node ./scripts/dash.js"
   }
