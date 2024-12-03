@@ -1,10 +1,11 @@
 import React from 'react';
+import SimpleCircularLoading from '@/components/shared/Loading/SimpleCircularLoading';
+
 import { sty } from '@/utils';
 import { toast } from 'react-toastify';
 import { paths } from '@/router/paths';
 import { Link } from 'react-router-dom';
 import { AppParse } from '@/service/Parse';
-import SimpleCircularLoading from '@/components/shared/Loading/SimpleCircularLoading';
 import { login } from '@/service/auth/login';
 
 export default function CreateAccount({ setSteps }) {
@@ -92,7 +93,7 @@ export default function CreateAccount({ setSteps }) {
             <label htmlFor="name">Seu melhor email</label>
             <div className="text-sm opacity-80">
               <span className="text-primary">Aviso:</span> Insira um email válido, você precisará
-              confirma-lo mais tarde
+                            confirma-lo mais tarde
             </div>
             <input
               autoComplete="on"
