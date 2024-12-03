@@ -34,7 +34,7 @@ export default function AccountValidation() {
   const fetchUser = async () => {
     if (user) {
       try {
-        const singleUser = await AppParse.Cloud.run('validateUser', { auth: user.sub });
+        const singleUser = await AppParse.Cloud.run('validateUser', { sub: user.sub });
 
         switch (singleUser?.state) {
         case 'CREATE_ACCOUNT':
