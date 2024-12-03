@@ -1,13 +1,13 @@
 Parse.Cloud.define("validateUser", async (request) => {
-  const token = request.params.auth;
+  const sub = request.params.sub;
 
-  if (!token) {
-    throw new Error("ddd is required");
+  if (!sub) {
+    throw new Error("sub is required");
   }
 
   try {
     const query = new Parse.Query(Parse.User);
-    query.equalTo("sub", token);
+    query.equalTo("sub", sub);
 
     const user = await query.first({
       useMasterKey: true,
@@ -19,7 +19,7 @@ Parse.Cloud.define("validateUser", async (request) => {
       };
     }
 
-    const newKey = [...Array(22), token]
+    const newKey = [...Array(22), sub]
       .map(() => Math.random().toString(36)[2])
       .join("");
     user.set("password", newKey);
