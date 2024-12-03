@@ -52,7 +52,7 @@ export default function BackButton({ ...rest }) {
           show && 'translate-x-0 opacity-100 w-full ml-4'
         )}
       >
-        <p className="text-md font-medium text-texts">Home</p>
+        <p className="text-md font-medium text-texts">Voltar</p>
       </div>
     </button>
   );

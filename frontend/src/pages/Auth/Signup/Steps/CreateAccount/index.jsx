@@ -89,13 +89,10 @@ export default function CreateAccount({ setSteps }) {
           </div>
 
           <div className="box-border flex flex-col gap-2">
-            <div>
-              <label htmlFor="name">Seu melhor email</label>
-              <p className="text-sm opacity-80">
-                {' '}
-                <span className="text-primary">Aviso:</span> Insira um email válido, você precisará
-                                confirma-lo mais tarde
-              </p>
+            <label htmlFor="name">Seu melhor email</label>
+            <div className="text-sm opacity-80">
+              <span className="text-primary">Aviso:</span> Insira um email válido, você precisará
+              confirma-lo mais tarde
             </div>
             <input
               autoComplete="on"
@@ -147,14 +144,14 @@ export default function CreateAccount({ setSteps }) {
             type="submit"
             disabled
           >
-            {loading.message === 'LOADING' && (
+            {loading.message === 'LOADING' ? (
               <>
                 <SimpleCircularLoading />
                                 Carregando ...
               </>
-            )}
+            ) : null}
 
-            {loading.message === 'SUCCESS' && (
+            {loading.message === 'SUCCESS' ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -172,9 +169,9 @@ export default function CreateAccount({ setSteps }) {
                 </svg>
                                 Conta criada !
               </>
-            )}
+            ) : null}
 
-            {loading.message === 'ERROR' && (
+            {loading.message === 'ERROR' ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +189,7 @@ export default function CreateAccount({ setSteps }) {
                 </svg>
                                 Erro ao criar conta
               </>
-            )}
+            ) : null}
           </button>
         ) : (
           <button
