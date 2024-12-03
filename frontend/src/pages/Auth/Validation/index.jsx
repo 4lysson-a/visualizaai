@@ -9,11 +9,12 @@ export default function Page() {
   const navegate = useNavigate();
   const { user, isAuthenticated, isLoading } = useAuth0();
 
-  if (!isLoading && !isAuthenticated) {
-    navegate('/auth/login');
-  }
+  React.useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      navegate('/auth/login');
+    }
+  }, [isAuthenticated, isLoading]);
 
   if (isAuthenticated && !user?.email_verified) return <EmailValidation />;
-
   return <AccountValidation />;
 }

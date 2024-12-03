@@ -4,11 +4,14 @@ import BackButton from '@/components/shared/BackButton'
 import emailAnimation from '@/assets/animations/email.json';
 
 import { GmailBtn, ReloadBtn } from './buttons';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function EmailValidation(){
+  const { logout } = useAuth0();
+
   return (
     <div className="p-10 py-20 flex justify-center items-center flex-col gap-10">
-      <BackButton />
+      <BackButton onClick={logout} />
 
       <div className="flex flex-col gap-4">
         <Lottie animationData={emailAnimation} />

@@ -36,14 +36,15 @@ export default function CreateAccount({ setSteps }) {
         .join('');
 
       const user = await AppParse.Cloud.run('createAccount', {
+        password: pass,
         name: data.name,
         email: data.email,
         sub: singleUser.sub,
-        password: pass
       });
 
       if (!user) {
         await AppParse.Cloud.run('deleteAllSessions', { userId: user.id });
+        logout();
         throw new Error('Erro ao criar conta');
       }
 
