@@ -19,7 +19,7 @@ Parse.Cloud.define("validateUser", async (request) => {
       };
     }
 
-    const newKey = [...Array(22)]
+    const newKey = [...Array(22), token]
       .map(() => Math.random().toString(36)[2])
       .join("");
     user.set("password", newKey);
