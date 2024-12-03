@@ -22,6 +22,7 @@ Parse.Cloud.define("validateUser", async (request) => {
     const newKey = [...Array(22), sub]
       .map(() => Math.random().toString(36)[2])
       .join("");
+
     user.set("password", newKey);
     await user.save(null, { useMasterKey: true });
 
