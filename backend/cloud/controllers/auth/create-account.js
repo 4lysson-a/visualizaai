@@ -6,9 +6,9 @@ Parse.Cloud.define("createAccount", async (request) => {
   let stripeCustomerExists;
 
   try {
-    const { email, password, name } = request.params;
+    const { email, password, name, sub } = request.params;
 
-    if (!email || !password || !name) {
+    if (!email || !password || !name || !sub) {
       throw new Error("Email, senha ou nome, não foram fornecidos");
     }
 
@@ -39,8 +39,9 @@ Parse.Cloud.define("createAccount", async (request) => {
     }
 
     user = new Parse.User();
-    user.set("username", name);
+    user.set("sub", sub);
     user.set("email", email);
+    user.set("username", name);
     user.set("password", password);
     user.set("stripeCustomerId", stripe_created_customer.id);
 

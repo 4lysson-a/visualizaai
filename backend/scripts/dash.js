@@ -1,4 +1,7 @@
-require('dotenv').config()
+require('dotenv').config({
+  path: require('path').resolve(__dirname, '../env/.env'),
+})
+
 const { exec } = require('child_process');
 
 const dashboardCommand = `npx parse-dashboard --dev --appId ${process.env.APPLICATION_ID} --masterKey ${process.env.MASTER_KEY} --serverURL "http://localhost:1337/parse"`;

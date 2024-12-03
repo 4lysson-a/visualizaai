@@ -28,6 +28,7 @@ export default function Finish() {
         </div>
 
         <button
+          type='button'
           className="bg-primary text-background font-bold shadow-xl rounded-md px-4 py-2 active:scale-90"
           onClick={handleClick}
         >

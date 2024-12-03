@@ -1,13 +1,17 @@
 import React from 'react';
+import SimpleCircularLoading from '@/components/shared/Loading/SimpleCircularLoading';
+
 import { sty } from '@/utils';
 import { toast } from 'react-toastify';
 import { paths } from '@/router/paths';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppParse } from '@/service/Parse';
-import SimpleCircularLoading from '@/components/shared/Loading/SimpleCircularLoading';
 import { login } from '@/service/auth/login';
+import { useAuth0 } from '@auth0/auth0-react';
 
 export default function CreateAccount({ setSteps }) {
+  const navigate = useNavigate();
+  const { user: singleUser, logout } = useAuth0();
   const timeout = React.useRef(null);
 
   const [loading, setLoading] = React.useState({
@@ -27,22 +31,24 @@ export default function CreateAccount({ setSteps }) {
         }
       });
 
-      if (data.pass !== data.confirmPass) {
-        throw new Error('As senhas não coincidem');
-      }
+      const pass = [...Array(22), singleUser.sub]
+        .map(() => Math.random().toString(36)[2])
+        .join('');
 
       const user = await AppParse.Cloud.run('createAccount', {
+        password: pass,
         name: data.name,
         email: data.email,
-        password: data.pass
+        sub: singleUser.sub,
       });
 
       if (!user) {
         await AppParse.Cloud.run('deleteAllSessions', { userId: user.id });
+        logout();
         throw new Error('Erro ao criar conta');
       }
 
-      login(user.get('username'), data.pass);
+      await login(user.get('username'), pass);
 
       setLoading(prev => ({ ...prev, message: 'SUCCESS' }));
       setSteps(prev => ({ ...prev, current: prev.current + 1, user }));
@@ -55,6 +61,11 @@ export default function CreateAccount({ setSteps }) {
       }, 5000);
     }
   };
+
+  const handleLogout = async () => {
+    logout();
+    navigate(paths.auth.login.main);
+  }
 
   React.useEffect(() => {
     toast.onChange(e => {
@@ -70,16 +81,17 @@ export default function CreateAccount({ setSteps }) {
   }, []);
 
   return (
-    <div className="p-10 pt-5 flex w-full flex-col items-center h-full gap-5 overflow-auto">
+    <div className="p-10 pt-5 flex w-full flex-col items-center h-full gap-5 overflow-auto justify-between">
       <h1 className="text-md">Faça seu cadastro e desfrute de tudo que o visualizai pode oferecer</h1>
 
-      <form className="bg-card p-4 flex flex-col w-full gap-2 rounded-xl" onSubmit={handleSubmit}>
+      <form className="bg-card p-4 flex flex-col w-full gap-2 rounded-xl " onSubmit={handleSubmit}>
         <div className="flex flex-col gap-6">
           <div className="box-border flex flex-col gap-2">
             <label htmlFor="name">Qual o seu nome ?</label>
             <input
               autoComplete="on"
               required
+              defaultValue={singleUser?.name}
               className="rounded-xl disabled:opacity-50 p-3 bg-background"
               name="name"
               disabled={loading.is}
@@ -89,48 +101,20 @@ export default function CreateAccount({ setSteps }) {
           </div>
 
           <div className="box-border flex flex-col gap-2">
-            <div>
-              <label htmlFor="name">Seu melhor email</label>
-              <p className="text-sm opacity-80">
-                {' '}
-                <span className="text-primary">Aviso:</span> Insira um email válido, você precisará
-                                confirma-lo mais tarde
-              </p>
+            <label htmlFor="name">Seu melhor email</label>
+            <div className="text-sm opacity-80">
+              <span className="text-primary">Aviso:</span> Insira um email válido, você precisará
+                            confirma-lo mais tarde
             </div>
             <input
               autoComplete="on"
+              defaultValue={singleUser?.email}
               className="rounded-xl disabled:opacity-50 p-3 bg-background"
               required
               name="email"
-              disabled={loading.is}
+              disabled
               type="email"
               placeholder="Seu email aqui ..."
-            />
-          </div>
-
-          <div className="box-border flex flex-col gap-2">
-            <label htmlFor="pass">Senha</label>
-            <input
-              autoComplete="on"
-              className="rounded-xl disabled:opacity-50 p-3 bg-background"
-              name="pass"
-              disabled={loading.is}
-              required
-              type="password"
-              placeholder="Sua senha aqui ..."
-            />
-          </div>
-
-          <div className="box-border flex flex-col gap-2">
-            <label htmlFor="pass">Confirme sua senha</label>
-            <input
-              autoComplete="on"
-              className="rounded-xl disabled:opacity-50 p-3 bg-background"
-              name="confirmPass"
-              disabled={loading.is}
-              required
-              type="password"
-              placeholder="Confirme sua senha aqui ..."
             />
           </div>
         </div>
@@ -147,14 +131,14 @@ export default function CreateAccount({ setSteps }) {
             type="submit"
             disabled
           >
-            {loading.message === 'LOADING' && (
+            {loading.message === 'LOADING' ? (
               <>
                 <SimpleCircularLoading />
                                 Carregando ...
               </>
-            )}
+            ) : null}
 
-            {loading.message === 'SUCCESS' && (
+            {loading.message === 'SUCCESS' ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -172,9 +156,9 @@ export default function CreateAccount({ setSteps }) {
                 </svg>
                                 Conta criada !
               </>
-            )}
+            ) : null}
 
-            {loading.message === 'ERROR' && (
+            {loading.message === 'ERROR' ? (
               <>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +176,7 @@ export default function CreateAccount({ setSteps }) {
                 </svg>
                                 Erro ao criar conta
               </>
-            )}
+            ) : null}
           </button>
         ) : (
           <button
@@ -206,9 +190,9 @@ export default function CreateAccount({ setSteps }) {
 
       <p>
                 Já tem uma conta?{' '}
-        <Link to={paths.auth.login.main} className="text-primary font-bold underline">
+        <button onClick={handleLogout} type="button" className="text-primary font-bold underline">
                     Faça login
-        </Link>
+        </button>
       </p>
     </div>
   );

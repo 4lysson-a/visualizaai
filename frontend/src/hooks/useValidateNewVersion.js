@@ -23,11 +23,11 @@ export default function useValidateNewVersion() {
       })
       .then(data => {
         const currentVersion = LocalStorage.get('version');
-        if (currentVersion === data.tag_name) return;
+        if (currentVersion === data?.tag_name) return;
 
-        const tag = data.tag_name;
+        const tag = data?.tag_name;
 
-        if (version.tag === tag) {
+        if (version?.tag === tag) {
           return;
         } else {
           LocalStorage.set('version', { tag, exp: today });
