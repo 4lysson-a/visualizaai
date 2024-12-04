@@ -9,7 +9,7 @@ import useAuth from '@/hooks/zustand/(private)/useAuth';
 export default function LinkMenu() {
   const [companys] = useAuth(s => s.companys);
 
-  const link = `${import.meta.env.VITE_CLIENT_URL}/${companys.id}`;
+  const link = window.location.origin + '/' + companys.id;
 
   function handleCopy() {
     try {
@@ -35,6 +35,7 @@ export default function LinkMenu() {
         </div>
         <div className="flex flex-col gap-5 xm:flex-row">
           <button
+            type='button'
             onClick={handleCopy}
             className="bg-[var(--primary)] p-2 xm:pl-5 xm:pr-5 rounded-full font-bold text-white gap-3 flex items-center justify-center active:scale-95 outline-none"
           >
@@ -42,6 +43,7 @@ export default function LinkMenu() {
           </button>
 
           <button
+            type='button'
             onClick={handleView}
             className="bg-blue-500 p-2 xm:pl-5 xm:pr-5 rounded-full font-bold text-white gap-3 flex items-center justify-center active:scale-95 outline-none"
           >
