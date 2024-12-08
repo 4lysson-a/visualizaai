@@ -21,11 +21,11 @@ export default function Description({ expanded, product, ...rest }) {
         ref={ref}
         style={expanded ? { height } : { height: '1.75rem' }}
         className={twMerge(
-          clsx(!expanded && 'w-[70%] overflow-ellipsis overflow-hidden whitespace-nowrap relative sm:w-[90%]')
+          clsx(!expanded && 'w-[70%] overflow-ellipsis overflow-hidden relative sm:w-[90%]')
         )}
       >
-        {!expanded && <div className="absolute w-full h-full fadeGradient left-4" />}
-        <p className="text-[var(--texts)]">{product?.get('description')}</p>
+        {!expanded ? <div className="absolute w-full h-full fadeGradient left-4" /> : null}
+        <p className="text-[var(--texts)] w-full break-all">{product?.get('description')}</p>
       </div>
 
       <div className={sty('flex w-10 items-center justify-center', expanded && 'w-full')}>
